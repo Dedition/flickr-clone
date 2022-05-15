@@ -1,5 +1,5 @@
 <h1 align= "center" dir="auto">
-  ☕ Welcome to Flickr 🛏️
+  Welcome to Flickr
 </h1>
 <h5 align= "center" dir="auto">
   created by: Leo Ladipo
