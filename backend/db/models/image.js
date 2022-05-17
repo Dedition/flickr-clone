@@ -1,13 +1,13 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const image = sequelize.define('image', {
+  const Image = sequelize.define('Image', {
     userId: DataTypes.INTEGER,
     name: DataTypes.STRING,
     albumId: DataTypes.INTEGER,
     imageUrl: DataTypes.STRING,
     content: DataTypes.STRING
   }, {});
-  image.associate = function (models) {
+  Image.associate = function (models) {
     // associations can be defined here
     Image.belongsTo(models.User, {
       foreignKey: 'userId',
@@ -21,5 +21,5 @@ module.exports = (sequelize, DataTypes) => {
       hooks: true,
     });
   };
-  return image;
+  return Image;
 };

@@ -1,11 +1,13 @@
 const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
+const imagesRouter = require('./images.js');
 
 // Use the routers here
 // They will extend throughout the rest of your application
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
+router.use('/images', imagesRouter);
 
 
 
@@ -45,6 +47,7 @@ router.get(
 
 // GET /api/require-auth
 const { requireAuth } = require('../../utils/auth.js');
+const { Router } = require('express');
 router.get(
   '/require-auth',
   requireAuth,

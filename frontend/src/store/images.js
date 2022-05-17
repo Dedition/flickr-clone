@@ -21,6 +21,10 @@ const deleteImage = (images) => ({ type: DELETE, images });
 // TODO                                 Thunks
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 CREATE
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
 export const uploadImage = (data) => async (dispatch) => {
     const { name, content, userId, image } = data;
     const formData = new FormData();
@@ -50,6 +54,10 @@ export const uploadImage = (data) => async (dispatch) => {
     }
 }
 
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 READ
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
 export const getImages = () => async (dispatch) => {
     const response = await csrfFetch('/api/images');
 
@@ -62,6 +70,10 @@ export const getImages = () => async (dispatch) => {
         throw error;
     }
 }
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 UPDATE
+// TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const editImage = (data) => async (dispatch) => {
     const response = await csrfFetch(`/api/images/${data.id}`, {
@@ -78,6 +90,10 @@ export const editImage = (data) => async (dispatch) => {
         throw error;
     }
 }
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 DELETE
+// TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const deleteImageAction = (imageId) => async (dispatch) => {
     const response = await csrfFetch(`/api/images/${imageId}`, {

@@ -9,12 +9,11 @@ const router = express.Router();
 
 const { Image, User, Comment } = require('../../db/models');
 
-const { Image } = require('../../db/models');
-
 router.get('/', asyncHandler(async (req, res) => {
     const images = await Image.findAll({
         order: [['createdAt', 'DESC']], include: [User]
     });
+    console.log('HELLO FROM ROUTES/API/IMAGES.JS');
     res.json(images);
 }));
 

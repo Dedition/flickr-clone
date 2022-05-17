@@ -1,11 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const comment = sequelize.define('comment', {
+  const Comment = sequelize.define('Comment', {
     userId: DataTypes.INTEGER,
     photoId: DataTypes.INTEGER,
     content: DataTypes.STRING
   }, {});
-  comment.associate = function (models) {
+  Comment.associate = function (models) {
     // associations can be defined here
     Comment.belongsTo(models.User, {
       foreignKey: 'userId',
@@ -13,12 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       hooks: true
     });
 
-    Comment.belongsTo(models.Photo, {
-      foreignKey: 'photoId',
-      onDelete: 'CASCADE',
-      hooks: true,
-    });
+    // Comment.belongsTo(models.Image, {
+    //   foreignKey: 'photoId',
+    //   onDelete: 'CASCADE',
+    //   hooks: true,
+    // });
 
   };
-  return comment;
+  return Comment;
 };

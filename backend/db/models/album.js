@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const album = sequelize.define('album', {
+  const Album = sequelize.define('Album', {
     userId: DataTypes.INTEGER,
     title: DataTypes.STRING
   }, {});
-  album.associate = function (models) {
+  Album.associate = function (models) {
     // associations can be defined here
     Album.belongsTo(models.User, {
       foreignKey: 'userId',
@@ -12,13 +12,11 @@ module.exports = (sequelize, DataTypes) => {
       hooks: true
     });
 
-    Album.hasMany(models.Image, {
-      foreignKey: 'albumId',
-      as: 'images',
-      onDelete: 'CASCADE',
-      hooks: true
-    });
-
+    // Album.belongsToMany(models.Image, {
+    //   foreignKey: 'albumId',
+    //   onDelete: 'CASCADE',
+    //   hooks: true,
+    // });
   };
-  return album;
+  return Album;
 };
