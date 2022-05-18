@@ -11,16 +11,28 @@ module.exports = {
         name: 'John Doe',
         isBetaMember: false
       }], {});
-    */
-    return queryInterface.bulkInsert('Albums', [{
-      title: 'Album 1',
-      userId: 1
+      */
+    return queryInterface.bulkInsert('Comments', [{
+      id: 1,
+      userId: 1,
+      imageId: 1,
+      content: 'comment1',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
-      title: 'Album 2',
-      userId: 1
+      id: 2,
+      userId: 1,
+      imageId: 1,
+      content: 'comment2',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
-      title: 'Album 3',
-      userId: 1
+      id: 3,
+      userId: 1,
+      imageId: 1,
+      content: 'comment3',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 
@@ -31,7 +43,7 @@ module.exports = {
 
       Example:
       return queryInterface.bulkDelete('People', null, {});
-    */
-    return queryInterface.bulkDelete('Albums', null, {});
+      */
+    return queryInterface.bulkDelete('Comments', null, {});
   }
 };

@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Comment = sequelize.define('Comment', {
     userId: DataTypes.INTEGER,
-    photoId: DataTypes.INTEGER,
+    imageId: DataTypes.INTEGER,
     content: DataTypes.STRING
   }, {});
   Comment.associate = function (models) {
@@ -13,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       hooks: true
     });
 
-    // Comment.belongsTo(models.Image, {
-    //   foreignKey: 'photoId',
-    //   onDelete: 'CASCADE',
-    //   hooks: true,
-    // });
+    Comment.belongsTo(models.Image, {
+      foreignKey: 'imageId',
+      onDelete: 'CASCADE',
+      hooks: true
+    });
 
   };
   return Comment;

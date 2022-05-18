@@ -1,0 +1,82 @@
+# Album
+
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const Album = sequelize.define('Album', {
+    userId: DataTypes.INTEGER,
+    title: DataTypes.STRING
+  }, {});
+  Album.associate = function (models) {
+    // associations can be defined here
+    Album.belongsTo(models.User, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE',
+      hooks: true
+    });
+
+    // Album.belongsToMany(models.Image, {
+    //   foreignKey: 'albumId',
+    //   onDelete: 'CASCADE',
+    //   hooks: true,
+    // });
+  };
+  return Album;
+};
+
+
+# Comment
+
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const Comment = sequelize.define('Comment', {
+    userId: DataTypes.INTEGER,
+    photoId: DataTypes.INTEGER,
+    content: DataTypes.STRING
+  }, {});
+  Comment.associate = function (models) {
+    // associations can be defined here
+    Comment.belongsTo(models.User, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE',
+      hooks: true
+    });
+
+    // Comment.belongsTo(models.Image, {
+    //   foreignKey: 'photoId',
+    //   onDelete: 'CASCADE',
+    //   hooks: true,
+    // });
+
+  };
+  return Comment;
+};
+
+#  Image
+
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const Image = sequelize.define('Image', {
+    userId: DataTypes.INTEGER,
+    name: DataTypes.STRING,
+    albumId: DataTypes.INTEGER,
+    imageUrl: DataTypes.STRING,
+    content: DataTypes.STRING
+  }, {});
+  Image.associate = function (models) {
+    // associations can be defined here
+    Image.belongsTo(models.User, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE',
+      hooks: true
+    });
+
+    Image.belongsTo(models.Album, {
+      foreignKey: 'albumId',
+      onDelete: 'CASCADE',
+      hooks: true,
+    });
+  };
+  return Image;
+};
+
+#

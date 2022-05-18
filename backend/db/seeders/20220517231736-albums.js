@@ -11,21 +11,26 @@ module.exports = {
         name: 'John Doe',
         isBetaMember: false
       }], {});
-    */
-    return queryInterface.bulkInsert('Comments', [{
+      */
+    return queryInterface.bulkInsert('Albums', [{
+      id: 1,
       userId: 1,
-      photoId: 1,
-      content: 'This is a comment',
+      title: 'album1',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
+      id: 2,
       userId: 1,
-      photoId: 2,
-      content: 'This is a comment',
+      title: 'album2',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
+      id: 3,
       userId: 1,
-      photoId: 3,
-      content: 'This is a comment',
-    },
-    ], {});
+      title: 'album3',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }], {});
   },
 
   down: (queryInterface, Sequelize) => {
@@ -35,7 +40,7 @@ module.exports = {
 
       Example:
       return queryInterface.bulkDelete('People', null, {});
-    */
-    return queryInterface.bulkDelete('Comments', null, {});
+      */
+    return queryInterface.bulkDelete('Albums', null, {});
   }
 };

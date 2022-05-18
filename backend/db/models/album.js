@@ -2,6 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Album = sequelize.define('Album', {
     userId: DataTypes.INTEGER,
+    imageId: DataTypes.INTEGER,
     title: DataTypes.STRING
   }, {});
   Album.associate = function (models) {
@@ -12,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       hooks: true
     });
 
-    // Album.belongsToMany(models.Image, {
-    //   foreignKey: 'albumId',
-    //   onDelete: 'CASCADE',
-    //   hooks: true,
-    // });
+    Album.belongsTo(models.Image, {
+      foreignKey: 'imageId',
+      onDelete: 'CASCADE',
+      hooks: true
+    });
   };
   return Album;
 };

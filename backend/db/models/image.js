@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     albumId: DataTypes.INTEGER,
     imageUrl: DataTypes.STRING,
+    location: DataTypes.STRING,
     content: DataTypes.STRING
   }, {});
   Image.associate = function (models) {
@@ -15,11 +16,18 @@ module.exports = (sequelize, DataTypes) => {
       hooks: true
     });
 
-    Image.belongsTo(models.Album, {
-      foreignKey: 'albumId',
+    Image.hasMany(models.Album, {
+      foreignKey: 'imageId',
       onDelete: 'CASCADE',
-      hooks: true,
+      hooks: true
     });
+
+    Image.hasMany(models.Comment, {
+      foreignKey: 'imageId',
+      onDelete: 'CASCADE',
+      hooks: true
+    });
+
   };
   return Image;
 };
