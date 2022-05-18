@@ -13,26 +13,17 @@ module.exports = {
       }], {});
       */
     return queryInterface.bulkInsert('Comments', [{
-      id: 1,
       userId: 1,
       imageId: 1,
       content: 'comment1',
-      createdAt: new Date(),
-      updatedAt: new Date()
     }, {
-      id: 2,
       userId: 1,
       imageId: 1,
       content: 'comment2',
-      createdAt: new Date(),
-      updatedAt: new Date()
     }, {
-      id: 3,
       userId: 1,
       imageId: 1,
       content: 'comment3',
-      createdAt: new Date(),
-      updatedAt: new Date()
     }], {});
   },
 
