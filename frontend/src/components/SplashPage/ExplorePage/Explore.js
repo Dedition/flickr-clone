@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getImages } from '../../store/images';
+import { getImages } from '../../../store/images';
 
 const Explore = () => {
     const dispatch = useDispatch();
