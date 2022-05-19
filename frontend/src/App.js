@@ -9,6 +9,7 @@ import Splash from "./components/SplashPage/Splash";
 
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import ImageDetails from "./components/ImageDetailsPage/ImageDetails";
 
 
 function App() {
@@ -24,11 +25,13 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/"><Splash isLoaded={isLoaded} /></Route>
+          <Route path="/images/:id"><ImageDetails /></Route>
           <Route path="/signup"><SignupFormPage /></Route>
           <Route path="login"><LoginFormModal /></Route>
           <Route path="*"><h2>Page Not Found</h2></Route>
         </Switch>
-      )}
+      )
+      }
     </>
   );
 }
