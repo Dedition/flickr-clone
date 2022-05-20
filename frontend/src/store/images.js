@@ -95,15 +95,15 @@ export const editImage = (data) => async (dispatch) => {
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const deleteImageAction = (id) => async (dispatch) => {
-    console.log('AM I IN?1')
-    console.log(id);
+    // console.log('AM I IN?1')
+    // console.log(id);
     const response = await csrfFetch(`/api/images/${id}`, {
         method: 'DELETE'
     });
     console.log(response);
     if (response.ok) {
         const deletedImageId = await response.json();
-        console.log('AM I IN?2')
+        // console.log('AM I IN?2')
         dispatch(deleteImage(deletedImageId));
         return deletedImageId;
     } else {
@@ -126,7 +126,6 @@ const imageReducer = (state = initialState, action) => {
             return { ...state, ...newImage };
         case LOAD:
             const allImages = {};
-            console.log('HELLOOOOOO FROM LOAD')
             action.images.forEach(image => allImages[image.id] = image);
             return { ...state, ...allImages };
         case UPDATE:
