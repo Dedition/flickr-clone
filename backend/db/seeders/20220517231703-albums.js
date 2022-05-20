@@ -14,15 +14,12 @@ module.exports = {
       */
     return queryInterface.bulkInsert('Albums', [{
       userId: 1,
-      imageId: 1,
       title: 'album1',
     }, {
       userId: 1,
-      imageId: 2,
       title: 'album2',
     }, {
       userId: 1,
-      imageId: 3,
       title: 'album3',
     }], {});
   },

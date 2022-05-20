@@ -9,6 +9,7 @@ const router = express.Router();
 
 const { Image, User, Comment } = require('../../db/models');
 
+// load all images
 router.get('/', asyncHandler(async (req, res) => {
     const images = await Image.findAll({
         order: [['createdAt', 'DESC']], include: [User]
@@ -62,12 +63,17 @@ router.put('/:id(\\d+)', validateImage, asyncHandler(async (req, res) => {
 }));
 
 // delete an image
-router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
-    const image = await Image.findByPk(req.params.id);
+// Put back requireAuth
+router.delete('/:id/', requireAuth, asyncHandler(async (req, res) => {
+    const imageId = parseInt(req.params.id, 10);
+    console.log('imageId: ', imageId);
+    // console.log(typeof imageId, '======================')
+    const image = await Image.findByPk(imageId);
+    console.log(image)
     await image.destroy();
-    return res.json(image.id);
-}
-));
+    res.json({ message: 'Image deleted successfully.' });
+}));
+
 
 // get comments of a photo
 router.get('/:id(\\d+)/comments', asyncHandler(async (req, res) => {

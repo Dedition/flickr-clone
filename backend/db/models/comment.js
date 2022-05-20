@@ -9,14 +9,10 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Comment.belongsTo(models.User, {
       foreignKey: 'userId',
-      onDelete: 'CASCADE',
-      hooks: true
     });
 
     Comment.belongsTo(models.Image, {
       foreignKey: 'imageId',
-      onDelete: 'CASCADE',
-      hooks: true
     });
 
   };

@@ -12,14 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Image.belongsTo(models.User, {
       foreignKey: 'userId',
-      onDelete: 'CASCADE',
-      hooks: true
-    });
-
-    Image.hasMany(models.Album, {
-      foreignKey: 'imageId',
-      onDelete: 'CASCADE',
-      hooks: true
     });
 
     Image.hasMany(models.Comment, {
@@ -28,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
       hooks: true
     });
 
+    Image.belongsTo(models.Album, {
+      foreignKey: 'albumId',
+    });
   };
   return Image;
 };

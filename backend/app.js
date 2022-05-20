@@ -16,13 +16,6 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-
-// Security Middleware
-if (!isProduction) {
-  // enable cors only in development
-  app.use(cors());
-}
-
 // Security Middleware
 if (!isProduction) {
   // enable cors only in development
@@ -30,15 +23,15 @@ if (!isProduction) {
 }
 
 // Set the _csrf token and create req.csrfToken method
-app.use(
-  csurf({
-    cookie: {
-      secure: isProduction,
-      sameSite: isProduction && "Lax",
-      httpOnly: true
-    }
-  })
-);
+// app.use(
+//   csurf({
+//     cookie: {
+//       secure: isProduction,
+//       sameSite: isProduction && "Lax",
+//       httpOnly: true
+//     }
+//   })
+// );
 
 app.use(routes);
 

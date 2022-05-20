@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
+import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
+import { deleteImageAction } from "../../store/images";
 
 import { getImages } from "../../store/images";
 
@@ -9,18 +11,27 @@ import "./ImageDetails.css";
 const ImageDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
     let images = useSelector(state => state.images);
     images = Object.values(images);
-    console.log(id)
+    // console.log(id)
+
+
 
     useEffect(() => {
         dispatch(getImages());
     }, [dispatch]);
 
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        await dispatch(deleteImageAction(id))
+            .then(() => { history.push("/") })
+            .catch(err => console.log(err));
+    };
+
+
     const sessionUser = useSelector(state => state.session.user);
     const image = images.find(image => image.id === +id);
-    console.log(image.imageUrl);
-    // console.log(images.id);
 
     return (
         <div className="image-details-page">
@@ -48,6 +59,7 @@ const ImageDetails = () => {
                     <div className="image-details-page-info-content-text">
                         {image?.content}
                     </div>
+                    <button onClick={handleDelete}>Delete</button>
                 </div>
             </div>
         </div>
