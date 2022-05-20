@@ -15,12 +15,11 @@ const DELETE = "images/DELETE";
 const create = (images) => ({ type: CREATE, images });
 const load = (images) => ({ type: LOAD, images });
 const update = (images) => ({ type: UPDATE, images });
-const deleteImage = (images) => ({ type: DELETE, images });
+const deleteImage = (id) => ({ type: DELETE, id });
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 Thunks
 // TODO ——————————————————————————————————————————————————————————————————————————————————
-
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 CREATE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
@@ -95,13 +94,16 @@ export const editImage = (data) => async (dispatch) => {
 // TODO                                 DELETE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-export const deleteImageAction = (imageId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/images/${imageId}`, {
+export const deleteImageAction = (id) => async (dispatch) => {
+    // console.log('AM I IN?1')
+    // console.log(id);
+    const response = await csrfFetch(`/api/images/${id}`, {
         method: 'DELETE'
     });
-
+    console.log(response);
     if (response.ok) {
         const deletedImageId = await response.json();
+        // console.log('AM I IN?2')
         dispatch(deleteImage(deletedImageId));
         return deletedImageId;
     } else {
@@ -134,7 +136,7 @@ const imageReducer = (state = initialState, action) => {
             return updatedImages;
         case DELETE:
             const newState = { ...state };
-            delete newState[action.images];
+            delete newState[action.id];
             return newState;
         default:
             return state;

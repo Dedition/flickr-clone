@@ -9,6 +9,14 @@ const router = express.Router();
 
 const { Image, User, Comment } = require('../../db/models');
 
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// *                                   Images
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 READ
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// load all images
 router.get('/', asyncHandler(async (req, res) => {
     const images = await Image.findAll({
         order: [['createdAt', 'DESC']], include: [User]
@@ -17,6 +25,9 @@ router.get('/', asyncHandler(async (req, res) => {
     res.json(images);
 }));
 
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 VALIDATE
+// TODO ——————————————————————————————————————————————————————————————————————————————————
 const validateImage = [
     check('name')
         .exists({ checkFalsy: true })
@@ -29,6 +40,9 @@ const validateImage = [
 //     check('title').isLength({ min: 1 }).withMessage('Title is required')
 // ];
 
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 CREATE
+// TODO ——————————————————————————————————————————————————————————————————————————————————
 // post an image
 router.post('/', singleMulterUpload("image"), validateImage, asyncHandler(async (req, res) => {
     const { name, content, userId } = req.body;
@@ -44,6 +58,9 @@ router.post('/', singleMulterUpload("image"), validateImage, asyncHandler(async 
     }
 }));
 
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 UPDATE
+// TODO ——————————————————————————————————————————————————————————————————————————————————
 // edit an image
 router.put('/:id(\\d+)', validateImage, asyncHandler(async (req, res) => {
     const imageId = parseInt(req.params.id, 10);
@@ -61,15 +78,24 @@ router.put('/:id(\\d+)', validateImage, asyncHandler(async (req, res) => {
     }
 }));
 
-// delete an image
-router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
-    const image = await Image.findByPk(req.params.id);
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 DELETE
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+router.delete('/:id/', requireAuth, asyncHandler(async (req, res) => {
+    const imageId = parseInt(req.params.id, 10);
+    const image = await Image.findByPk(imageId);
     await image.destroy();
-    return res.json(image.id);
-}
-));
+    return res.json(imageId);
+}));
 
-// get comments of a photo
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// *                                  Comments
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 READ
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
 router.get('/:id(\\d+)/comments', asyncHandler(async (req, res) => {
     const imageId = parseInt(req.params.id, 10);
     const image = await Image.findByPk(imageId, {
@@ -81,6 +107,10 @@ router.get('/:id(\\d+)/comments', asyncHandler(async (req, res) => {
 }
 ));
 
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 VALIDATE
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
 const validateComment = [
     check('content')
         .exists({ checkFalsy: true })
@@ -89,7 +119,10 @@ const validateComment = [
         .withMessage('Comment must be between 1 and 1000 characters.'),
 ];
 
-// post a comment
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 CREATE
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
 router.post('/:id(\\d+)/comments', validateComment, asyncHandler(async (req, res) => {
     const { userId, imageId, content } = req.body;
 
