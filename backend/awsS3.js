@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
 // name of your bucket here
-const flickrclonebucket = "aws-s3-pern-demo";
+const flickrclonebucket = "flickrclonebucket";
 
 const multer = require("multer");
 

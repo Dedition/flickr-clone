@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link, useHistory } from "react-router-dom";
-import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
+import { useParams, useHistory } from "react-router-dom";
 import { deleteImageAction } from "../../store/images";
 
 import { getImages } from "../../store/images";
@@ -30,13 +29,13 @@ const ImageDetails = () => {
     };
 
 
-    const sessionUser = useSelector(state => state.session.user);
+    // const sessionUser = useSelector(state => state.session.user);
     const image = images.find(image => image.id === +id);
 
     return (
         <div className="image-details-page">
             <div className="image-details-page-image">
-                <img src={image?.imageUrl} alt="image" />
+                <img src={image?.imageUrl} alt={image.content} />
             </div>
             <div className="image-details-page-info">
                 <div className="image-details-page-info-user">
