@@ -125,16 +125,19 @@ const imageReducer = (state = initialState, action) => {
             const newImage = {};
             newImage[action.images.id] = action.images;
             return { ...state, ...newImage };
+
         case LOAD:
             const allImages = {};
             action.images.forEach(image => allImages[image.id] = image);
             return { ...state, ...allImages };
+
         case UPDATE:
             const updatedImages = {
                 ...state,
                 [action.images.id]: action.images
             };
             return updatedImages;
+
         case DELETE:
             const newState = { ...state };
             delete newState[action.id];
