@@ -1,10 +1,13 @@
+//*                         React
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import { deleteImageAction } from "../../store/images";
 
+//*                         Store
+import { deleteImageAction } from "../../store/images";
 import { getImages } from "../../store/images";
 
+//*                         CSS
 import "./ImageDetails.css";
 
 const ImageDetails = () => {
@@ -13,9 +16,6 @@ const ImageDetails = () => {
     const history = useHistory();
     let images = useSelector(state => state.images);
     images = Object.values(images);
-    // console.log(id)
-
-
 
     useEffect(() => {
         dispatch(getImages());
@@ -28,14 +28,13 @@ const ImageDetails = () => {
             .catch(err => console.log(err));
     };
 
-
     // const sessionUser = useSelector(state => state.session.user);
     const image = images.find(image => image.id === +id);
 
     return (
         <div className="image-details-page">
             <div className="image-details-page-image">
-                <img src={image?.imageUrl} alt={image.content} />
+                <img src={image?.imageUrl} />
             </div>
             <div className="image-details-page-info">
                 <div className="image-details-page-info-user">
