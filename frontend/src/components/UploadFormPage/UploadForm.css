@@ -1,0 +1,6 @@
+.form-control {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    width: 100%;
+}

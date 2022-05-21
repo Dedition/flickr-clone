@@ -25,15 +25,16 @@ const deleteImage = (id) => ({ type: DELETE, id });
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const uploadImage = (data) => async (dispatch) => {
-    const { name, content, userId, image } = data;
+    const { name, content, userId, location, image } = data;
     const formData = new FormData();
-    formData.append('image', image);
     formData.append('name', name);
     formData.append('content', content);
     formData.append('userId', userId);
+    formData.append('location', location);
 
-    if (!image) dispatch(create(null))
-    else formData.append('image', image);
+    // if (!image) dispatch(create(null))
+    // else
+    formData.append('image', image);
 
     const response = await csrfFetch('/api/images', {
         method: 'POST',

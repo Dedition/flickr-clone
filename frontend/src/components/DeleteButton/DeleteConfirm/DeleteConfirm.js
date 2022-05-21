@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
-import { deleteImageAction } from "../../store/images";
+import { deleteImageAction } from "../../../store/images";
 
 const DeleteConfirm = () => {
     const dispatch = useDispatch();

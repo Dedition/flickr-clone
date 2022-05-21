@@ -36,20 +36,24 @@ const validateImage = [
         .withMessage('Name cannot be more than 100 characters.'),
 ];
 
-// const validateImage = [
-//     check('title').isLength({ min: 1 }).withMessage('Title is required')
-// ];
-
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 CREATE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // post an image
-router.post('/', singleMulterUpload("image"), validateImage, asyncHandler(async (req, res) => {
-    const { name, content, userId } = req.body;
-    const imageUrl = await singlePublicFileUpload(req.file);
-    const image = await Image.create({ name, userId, imageUrl, content });
-
+// Put validateImage back in
+router.post('/', singleMulterUpload("image"), asyncHandler(async (req, res) => {
+    const { name, content, location, userId } = req.body;
+    const AWSImageUrl = await singlePublicFileUpload(req.file);
     const validationErrors = validationResult(req);
+
+    const image = await Image.create({
+        name,
+        userId,
+        location,
+        content,
+        imageUrl: AWSImageUrl
+    });
+
     if (!validationErrors.isEmpty()) {
         return res.status(422).json({ errors: validationErrors.array() });
     } else {
