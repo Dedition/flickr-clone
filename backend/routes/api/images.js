@@ -9,21 +9,9 @@ const router = express.Router();
 
 const { Image, User, Comment } = require('../../db/models');
 
-// TODO ——————————————————————————————————————————————————————————————————————————————————
-// *                                   Images
-// TODO ——————————————————————————————————————————————————————————————————————————————————
-
-// TODO ——————————————————————————————————————————————————————————————————————————————————
-// TODO                                 READ
-// TODO ——————————————————————————————————————————————————————————————————————————————————
-// load all images
-router.get('/', asyncHandler(async (req, res) => {
-    const images = await Image.findAll({
-        order: [['createdAt', 'DESC']], include: [User]
-    });
-    console.log('HELLO FROM ROUTES/API/IMAGES.JS');
-    res.json(images);
-}));
+// * ——————————————————————————————————————————————————————————————————————————————————
+// *                                    Images
+// * ——————————————————————————————————————————————————————————————————————————————————
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 VALIDATE
@@ -34,14 +22,23 @@ const validateImage = [
         .withMessage('Please provide a name.')
         .isLength({ max: 100 })
         .withMessage('Name cannot be more than 100 characters.'),
+    check('content')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a description.')
+        .isLength({ max: 100 })
+        .withMessage('Description cannot be more than 100 characters.'),
+    check('location')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a location.')
+        .isLength({ max: 30 })
+        .withMessage('Location cannot be more than 30 characters.'),
 ];
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 CREATE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
-// post an image
-// Put validateImage back in
-router.post('/', singleMulterUpload("image"), asyncHandler(async (req, res) => {
+
+router.post('/', singleMulterUpload("image"), validateImage, asyncHandler(async (req, res) => {
     const { name, content, location, userId } = req.body;
     const AWSImageUrl = await singlePublicFileUpload(req.file);
     const validationErrors = validationResult(req);
@@ -60,6 +57,18 @@ router.post('/', singleMulterUpload("image"), asyncHandler(async (req, res) => {
         await image.save();
         res.json(image);
     }
+}));
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 READ
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// load all images
+router.get('/', asyncHandler(async (req, res) => {
+    const images = await Image.findAll({
+        order: [['createdAt', 'DESC']], include: [User]
+    });
+    console.log('HELLO FROM ROUTES/API/IMAGES.JS');
+    res.json(images);
 }));
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
@@ -92,24 +101,10 @@ router.delete('/:id/', requireAuth, asyncHandler(async (req, res) => {
     return res.json(imageId);
 }));
 
-// TODO ——————————————————————————————————————————————————————————————————————————————————
-// *                                  Comments
-// TODO ——————————————————————————————————————————————————————————————————————————————————
+// * ——————————————————————————————————————————————————————————————————————————————————
+// *                                    Comments
+// * ——————————————————————————————————————————————————————————————————————————————————
 
-// TODO ——————————————————————————————————————————————————————————————————————————————————
-// TODO                                 READ
-// TODO ——————————————————————————————————————————————————————————————————————————————————
-
-router.get('/:id(\\d+)/comments', asyncHandler(async (req, res) => {
-    const imageId = parseInt(req.params.id, 10);
-    const image = await Image.findByPk(imageId, {
-        include: [
-            { model: Comment, include: User }
-        ]
-    });
-    res.json(image);
-}
-));
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 VALIDATE
@@ -119,8 +114,8 @@ const validateComment = [
     check('content')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a comment.')
-        .isLength({ min: 1, max: 1000 })
-        .withMessage('Comment must be between 1 and 1000 characters.'),
+        .isLength({ min: 1, max: 100 })
+        .withMessage('Comment must be between 1 and 100 characters.'),
 ];
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
@@ -149,5 +144,21 @@ router.post('/:id(\\d+)/comments', validateComment, asyncHandler(async (req, res
     }
 }
 ));
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 READ
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
+router.get('/:id(\\d+)/comments', asyncHandler(async (req, res) => {
+    const imageId = parseInt(req.params.id, 10);
+    const image = await Image.findByPk(imageId, {
+        include: [
+            { model: Comment, include: User }
+        ]
+    });
+    res.json(image);
+}
+));
+
 
 module.exports = router;
