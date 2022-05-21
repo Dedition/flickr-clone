@@ -7,11 +7,11 @@ import { editImage } from "../../store/images";
 const EditImageForm = ({ isOpen }) => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
 
     const sessionUser = useSelector((state) => state.session.user);
 
-    const images = useSelector(state => state.images);
+    let images = useSelector(state => state.images);
     images = Object.values(images);
 
     const image = images.find(image => image.id === +id);
@@ -35,7 +35,7 @@ const EditImageForm = ({ isOpen }) => {
         let newPhoto = dispatch(editImage(data));
 
         if (newPhoto) {
-            history.push(`/images/${newPhoto.id}`);
+            // history.push(`/images/${newPhoto.id}`);
             isOpen(false);
         }
     };

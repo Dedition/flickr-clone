@@ -18,3 +18,5 @@ const EditImageFormModal = ({ id }) => {
         </>
     );
 }
+
+export default EditImageFormModal;
