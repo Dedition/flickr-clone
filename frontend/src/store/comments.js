@@ -3,52 +3,44 @@ import { csrfFetch } from './csrf';
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 Action
 // TODO ——————————————————————————————————————————————————————————————————————————————————
-const CREATE = "images/CREATE";
-const LOAD = "images/LOAD";
-const UPDATE = "images/UPDATE";
-const DELETE = "images/DELETE";
+
+const CREATE = "comments/CREATE";
+const LOAD = "comments/LOAD";
+const UPDATE = "comments/UPDATE";
+const DELETE = "comments/DELETE";
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 Action Creators
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-const create = (images) => ({ type: CREATE, images });
-const load = (images) => ({ type: LOAD, images });
-const update = (images) => ({ type: UPDATE, images });
-const deleteImage = (id) => ({ type: DELETE, id });
+const create = (comments) => ({ type: CREATE, comments });
+const load = (comments) => ({ type: LOAD, comments });
+const update = (comments) => ({ type: UPDATE, comments });
+const deleteComment = (id) => ({ type: DELETE, id });
 
 // * ——————————————————————————————————————————————————————————————————————————————————
-// *                                 Thunks
+// *                                    Thunks
 // * ——————————————————————————————————————————————————————————————————————————————————
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 CREATE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-export const uploadImage = (data) => async (dispatch) => {
-    const { name, content, userId, location, image } = data;
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('content', content);
-    formData.append('userId', userId);
-    formData.append('location', location);
+export const createComment = (data) => async (dispatch) => {
+    const { imageId } = data;
 
-    // if (!image) dispatch(create(null))
-    // else
-    formData.append('image', image);
-
-    const response = await csrfFetch('/api/images', {
+    const response = await csrfFetch(`/api/images/${imageId}/comments`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'application/json'
         },
-        body: formData
+        body: JSON.stringify(data)
     });
 
     if (response.ok) {
-        const newImage = await response.json();
-        dispatch(create(newImage));
-        return newImage;
+        const newComment = await response.json();
+        dispatch(create(newComment));
+        return newComment;
     } else {
         const error = await response.json();
         throw error;
@@ -59,13 +51,13 @@ export const uploadImage = (data) => async (dispatch) => {
 // TODO                                 READ
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-export const getImages = () => async (dispatch) => {
-    const response = await csrfFetch('/api/images');
+export const getComment = (id) => async (dispatch) => {
+    const response = await csrfFetch(`/api/comments/${id}`);
 
     if (response.ok) {
-        const images = await response.json();
-        dispatch(load(images));
-        return images;
+        const comment = await response.json();
+        dispatch(load(comment));
+        return comment;
     } else {
         const error = await response.json();
         throw error;
@@ -76,16 +68,21 @@ export const getImages = () => async (dispatch) => {
 // TODO                                 UPDATE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-export const editImage = (data) => async (dispatch) => {
-    const response = await csrfFetch(`/api/images/${data.id}`, {
+export const updateComment = (data) => async (dispatch) => {
+    const { imageId } = data;
+
+    const response = await csrfFetch(`/api/images/:id(\\d+)/comments`, {
         method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(data)
     });
 
     if (response.ok) {
-        const images = await response.json();
-        dispatch(update(images));
-        return images;
+        const updatedComment = await response.json();
+        dispatch(update(updatedComment));
+        return updatedComment;
     } else {
         const error = await response.json();
         throw error;
@@ -96,18 +93,14 @@ export const editImage = (data) => async (dispatch) => {
 // TODO                                 DELETE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-export const deleteImageAction = (id) => async (dispatch) => {
-    // console.log('AM I IN?1')
-    // console.log(id);
-    const response = await csrfFetch(`/api/images/${id}`, {
+export const removeComment = (id) => async (dispatch) => {
+    const response = await csrfFetch(`/api/comments/${id}`, {
         method: 'DELETE'
     });
-    console.log(response);
+
     if (response.ok) {
-        const deletedImageId = await response.json();
-        // console.log('AM I IN?2')
-        dispatch(deleteImage(deletedImageId));
-        return deletedImageId;
+        const commentId = await response.json();
+        dispatch(deleteComment(commentId));
     } else {
         const error = await response.json();
         throw error;
@@ -120,32 +113,31 @@ export const deleteImageAction = (id) => async (dispatch) => {
 
 const initialState = {};
 
-const imageReducer = (state = initialState, action) => {
+const commentReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CREATE:
-            const newImage = {};
-            newImage[action.images.id] = action.images;
-            return { ...state, ...newImage };
-
-        case LOAD:
-            const allImages = {};
-            action.images.forEach(image => allImages[image.id] = image);
-            return { ...state, ...allImages };
-
-        case UPDATE:
-            const updatedImages = {
-                ...state,
-                [action.images.id]: action.images
-            };
-            return updatedImages;
-
-        case DELETE:
+        case CREATE: {
+            const newState = { ...state };
+            newState[action.comments.id] = action.comments;
+            return newState;
+        }
+        case LOAD: {
+            const newState = { ...state };
+            action.comments.forEach(comment => newState[comment.id] = comment);
+            return newState;
+        }
+        case UPDATE: {
+            const newState = { ...state };
+            newState[action.comments.id] = action.comments;
+            return newState;
+        }
+        case DELETE: {
             const newState = { ...state };
             delete newState[action.id];
             return newState;
+        }
         default:
             return state;
     }
 }
 
-export default imageReducer;
+export default commentReducer;
