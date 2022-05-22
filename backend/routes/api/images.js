@@ -122,11 +122,10 @@ const validateComment = [
 // TODO                                 CREATE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-router.post('/:id(\\d+)/comments', validateComment, asyncHandler(async (req, res) => {
+router.post('/:id(\\d+)/comments', asyncHandler(async (req, res) => {
     const { userId, imageId, content } = req.body;
 
     const validatorErrors = validationResult(req);
-
     let comment = await Comment.build({
         userId,
         imageId,

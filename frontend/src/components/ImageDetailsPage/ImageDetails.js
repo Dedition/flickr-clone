@@ -9,6 +9,7 @@ import { getImages } from "../../store/images";
 
 //*                         Files
 import EditImageFormModal from "../EditImageForm/Edit";
+import Comments from "../CommentsPage/Comments";
 import "./ImageDetails.css";
 
 const ImageDetails = () => {
@@ -86,6 +87,9 @@ const ImageDetails = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="image-details-comments">
+                <Comments />
             </div>
         </div>
     );

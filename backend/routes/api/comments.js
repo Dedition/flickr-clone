@@ -8,9 +8,9 @@ const router = express.Router();
 
 const { Image, User, Comment } = require('../../db/models');
 
-// * ——————————————————————————————————————————————————————————————————————————————————
+// *    ——————————————————————————————————————————————————————————————————————————————————
 // *                                    Comments
-// * ——————————————————————————————————————————————————————————————————————————————————
+// *    ——————————————————————————————————————————————————————————————————————————————————
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 VALIDATE
@@ -24,13 +24,23 @@ const validateComment = [
         .withMessage('Comment must be between 1 and 100 characters.'),
 ];
 // TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 READ
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
+router.get('/', asyncHandler(async (req, res) => {
+    const comments = await Comment.findAll({ include: [User] });
+    res.json(comments);
+}
+));
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 UPDATE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 router.put('/:id(\\d+)', validateComment, asyncHandler(async (req, res) => {
     const commentId = parseInt(req.params.id, 10);
     let comment = await Comment.findByPk(commentId);
-
+    console.log(commentId)
     const validationErrors = validationResult(req);
 
     if (validationErrors.isEmpty()) {
