@@ -19,6 +19,7 @@ const Comments = () => {
 
     useEffect(() => {
         dispatch(getComment(id));
+        // eslint-disable-next-line
     }, [dispatch]);
 
     let comments = useSelector(state => state.comments);
@@ -30,7 +31,7 @@ const Comments = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let newComment = dispatch(createComment({
+        dispatch(createComment({
             userId: sessionUser.id,
             imageId: id,
             content

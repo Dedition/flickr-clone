@@ -14,6 +14,7 @@ const UploadForm = ({ isOpen }) => {
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
     const [content, setContent] = useState("");
+    // eslint-disable-next-line
     const [error, setError] = useState([]);
 
     const handleImageChange = (e) => {

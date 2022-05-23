@@ -27,6 +27,7 @@ const Explore = () => {
                 <div>
                     {images.map(image => (
                         <div className='images' key={image?.id}>
+                            {/* eslint-disable-next-line */}
                             <img onClick={() => { imageRedirect(image) }} key={image?.id} src={image?.imageUrl} />
                         </div>
                     ))}

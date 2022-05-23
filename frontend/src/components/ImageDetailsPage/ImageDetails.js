@@ -61,6 +61,7 @@ const ImageDetails = () => {
             <div className="image-details-body">
                 <div className="image-details-page-image">
                     <h2>{image?.name}</h2>
+                    {/* eslint-disable-next-line*/}
                     <img src={image?.imageUrl} />
                 </div>
                 <div className="image-details-page-info">
