@@ -70,9 +70,10 @@ export const getComment = (id) => async (dispatch) => {
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const updateComment = (data) => async (dispatch) => {
-    const { imageId } = data;
+    console.log('=======================', data);
+    // const { imageId } = data;
 
-    const response = await csrfFetch(`/api/images/${imageId}/comments`, {
+    const response = await csrfFetch(`/api/comments/${data.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -95,6 +96,7 @@ export const updateComment = (data) => async (dispatch) => {
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const removeComment = (id) => async (dispatch) => {
+    console.log(console.log(id))
     const response = await csrfFetch(`/api/comments/${id}`, {
         method: 'DELETE'
     });
@@ -102,10 +104,12 @@ export const removeComment = (id) => async (dispatch) => {
     if (response.ok) {
         const commentId = await response.json();
         dispatch(deleteComment(commentId));
+        return commentId;
     } else {
         const error = await response.json();
         throw error;
     }
+
 }
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
@@ -117,29 +121,31 @@ const initialState = {};
 const commentReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE: {
-            const newState = { ...state };
-            newState[action.comments.id] = action.comments;
-            return newState;
+            const newComment = { ...state };
+            newComment[action.comments.id] = action.comments;
+            return newComment;
         }
         case LOAD: {
-            const newState = { ...state };
+            const allComments = { ...state };
             // Object.values(action.comments).forEach(comment => {
             //     newState[comment.id] = comment;
             // });
             // newState[action.comments.id] = action.comments;
             action.comments.forEach(comment => {
-                newState[comment.id] = comment
+                allComments[comment.id] = comment
             });
-            console.log(newState);
-            return newState;
+            // console.log(newState);
+            return { ...state, ...allComments };
         }
         case UPDATE: {
-            const newState = { ...state, [action.comments.id]: action.comments };
-            return newState;
+            const updatedComments = { ...state, [action.comments.id]: action.comments };
+            return updatedComments;
         }
         case DELETE: {
+            console.log('ENTERED DELETE')
+            console.log(action)
             const newState = { ...state };
-            delete newState[action.id];
+            delete newState[action?.id];
             return newState;
         }
         default:

@@ -7,17 +7,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createComment, getComment, removeComment } from '../../store/comments';
 
 //*                       Files
-
+import EditCommentFormModal from '../EditCommentForm/Edit';
 
 const Comments = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
 
     const [content, setContent] = useState('');
 
     const sessionUser = useSelector(state => state.session.user);
-    let image = useSelector(state => state.images[id]);
+    // let image = useSelector(state => state.images[id]);
     // image = Object.values(image);
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const Comments = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let newComment = await dispatch(createComment({
+        let newComment = dispatch(createComment({
             userId: sessionUser.id,
             imageId: id,
             content
@@ -41,10 +41,10 @@ const Comments = () => {
         setContent('');
     }
 
-    const handleDelete = async (e) => {
-        e.preventDefault();
-        await dispatch(removeComment(e.target.id))
-            .catch(err => console.log(err));
+    const handleDelete = async (id) => {
+        // e.preventDefault();
+        dispatch(removeComment(id))
+        return;
     };
 
     return (
@@ -58,22 +58,25 @@ const Comments = () => {
                     </div>
                     <div className="image-details-body-comments-body">
                         {comments.map(comment => (
-                            <div className="image-details-body-comments-body-comment" key={comment.id}>
+                            <div className="image-details-body-comments-body-comment" key={comment?.id}>
                                 <div className="image-details-body-comments-body-comment-header">
                                     <div className="image-details-body-comments-body-comment-header-user">
-                                        <p>{comment.content}</p>
+                                        <p>{comment?.content}</p>
                                         <div className="image-details-body-comments-body-comment-header-user-info">
-                                            <p>{comment.createdAt}</p>
+                                            <p>{comment?.createdAt}</p>
                                         </div>
                                     </div>
-                                    {sessionUser && sessionUser.id === comment.userId &&
-                                        <button id={comment.id} onClick={handleDelete}>
-                                            <i className="fas fa-trash-alt"></i>
-                                        </button>
+                                    {sessionUser && sessionUser?.id === comment?.userId &&
+                                        <>
+                                            <button id={comment?.id} onClick={() => handleDelete(comment?.id)}>
+                                                <i className="fas fa-trash-alt"></i>
+                                            </button>
+                                            <EditCommentFormModal comment={comment} />
+                                        </>
                                     }
                                 </div>
                                 <div className="image-details-body-comments-body-comment-body">
-                                    <p>{comment.comment}</p>
+                                    <p>{comment?.comment}</p>
                                 </div>
                             </div>
                         ))}
@@ -83,8 +86,8 @@ const Comments = () => {
                     <form onSubmit={handleSubmit}>
                         <textarea
                             value={content}
-                            onChange={e => setContent(e.target.value)}
-                            placeholder="Add a comment..."
+                            onChange={e => setContent(e?.target?.value)}
+                            placeholder="What do you think?"
                         />
                         <button type="submit">
                             <i className="fas fa-paper-plane"></i>
