@@ -7,11 +7,7 @@ const Explore = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     let images = useSelector(state => state.images);
-    // console.log(Object.values(images));
     images = Object.values(images)
-    // console.log(images);
-    // console.log(images.imageUrl);
-    // console.log(typeof images);
 
     useEffect(() => {
         dispatch(getImages());

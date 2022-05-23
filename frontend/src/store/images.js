@@ -95,17 +95,12 @@ export const editImage = (data) => async (dispatch) => {
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 DELETE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
-
 export const deleteImageAction = (id) => async (dispatch) => {
-    // console.log('AM I IN?1')
-    // console.log(id);
     const response = await csrfFetch(`/api/images/${id}`, {
         method: 'DELETE'
     });
-    console.log(response);
     if (response.ok) {
         const deletedImageId = await response.json();
-        // console.log('AM I IN?2')
         dispatch(deleteImage(deletedImageId));
         return deletedImageId;
     } else {

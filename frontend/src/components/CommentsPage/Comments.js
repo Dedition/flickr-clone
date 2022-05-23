@@ -1,6 +1,6 @@
 //*                         React
 import { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 //*                        Store
@@ -12,13 +12,10 @@ import EditCommentFormModal from '../EditCommentForm/Edit';
 const Comments = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    // const history = useHistory();
 
     const [content, setContent] = useState('');
 
     const sessionUser = useSelector(state => state.session.user);
-    // let image = useSelector(state => state.images[id]);
-    // image = Object.values(image);
 
     useEffect(() => {
         dispatch(getComment(id));
@@ -42,7 +39,6 @@ const Comments = () => {
     }
 
     const handleDelete = async (id) => {
-        // e.preventDefault();
         dispatch(removeComment(id))
         return;
     };

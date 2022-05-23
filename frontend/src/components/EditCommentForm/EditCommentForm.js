@@ -1,21 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 
 import { updateComment } from '../../store/comments';
 
 const EditCommentForm = ({ isOpen, comment }) => {
-    // const { id } = useParams();
     const dispatch = useDispatch();
 
     const sessionUser = useSelector((state) => state.session.user);
-    console.log(sessionUser, 'sessionUser');
 
-    // let comments = useSelector(state => state.comments);
-    // comments = Object.values(comments);
-
-    // const comment = comments.find(comment => comment.imageId === +id);
-    console.log(comment, 'comment');
 
     const [content, setContent] = useState(comment?.content);
 

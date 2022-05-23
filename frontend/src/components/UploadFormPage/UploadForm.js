@@ -17,7 +17,6 @@ const UploadForm = ({ isOpen }) => {
     const [error, setError] = useState([]);
 
     const handleImageChange = (e) => {
-        console.log(e.target.files);
         setImage(e.target.files[0]);
     };
 
@@ -42,32 +41,6 @@ const UploadForm = ({ isOpen }) => {
             isOpen(false);
         }
     };
-
-
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const data = {
-    //         name,
-    //         location,
-    //         content,
-    //         userId: sessionUser.id,
-    //         image
-    //     };
-
-    //     setName("");
-    //     setLocation("");
-    //     setContent("");
-    //     setImage(null);
-
-    //     try {
-    //         const newImage = await dispatch(uploadImage(data));
-    //         history.push(`/images/${newImage.id}`);
-    //     } catch (err) {
-    //         setError(err.errors);
-    //     }
-    // }
-
 
     return (
         <div className="container">

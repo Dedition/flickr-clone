@@ -28,8 +28,6 @@ const deleteComment = (id) => ({ type: DELETE, id });
 
 export const createComment = (data) => async (dispatch) => {
     const { imageId } = data;
-    console.log(imageId)
-    console.log('HELLO INSIDE CREATE COMMENT');
     const response = await csrfFetch(`/api/images/${imageId}/comments`, {
         method: 'POST',
         headers: {
@@ -54,7 +52,6 @@ export const createComment = (data) => async (dispatch) => {
 
 export const getComment = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/comments`);
-    console.log('HELLO FROM GET COMMENT', id);
     if (response.ok) {
         const comment = await response.json();
         dispatch(load(comment));
@@ -70,8 +67,6 @@ export const getComment = (id) => async (dispatch) => {
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const updateComment = (data) => async (dispatch) => {
-    console.log('=======================', data);
-    // const { imageId } = data;
 
     const response = await csrfFetch(`/api/comments/${data.id}`, {
         method: 'PUT',
@@ -96,7 +91,6 @@ export const updateComment = (data) => async (dispatch) => {
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const removeComment = (id) => async (dispatch) => {
-    console.log(console.log(id))
     const response = await csrfFetch(`/api/comments/${id}`, {
         method: 'DELETE'
     });
@@ -127,14 +121,9 @@ const commentReducer = (state = initialState, action) => {
         }
         case LOAD: {
             const allComments = { ...state };
-            // Object.values(action.comments).forEach(comment => {
-            //     newState[comment.id] = comment;
-            // });
-            // newState[action.comments.id] = action.comments;
             action.comments.forEach(comment => {
                 allComments[comment.id] = comment
             });
-            // console.log(newState);
             return { ...state, ...allComments };
         }
         case UPDATE: {
@@ -142,8 +131,6 @@ const commentReducer = (state = initialState, action) => {
             return updatedComments;
         }
         case DELETE: {
-            console.log('ENTERED DELETE')
-            console.log(action)
             const newState = { ...state };
             delete newState[action?.id];
             return newState;
