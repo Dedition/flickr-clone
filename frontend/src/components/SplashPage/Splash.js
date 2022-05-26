@@ -1,6 +1,9 @@
 import { useSelector } from "react-redux";
 
+import HomePage from "./HomePage/Homepage";
 import Explore from "./ExplorePage/Explore";
+
+import "./Splash.css";
 
 const Splash = ({ isLoaded }) => {
     const sessionUser = useSelector(state => state.session.user);
@@ -8,7 +11,7 @@ const Splash = ({ isLoaded }) => {
     if (sessionUser) {
         splashPage = (<Explore />)
     } else {
-        splashPage = (<h1>Please sign in | Render home page here</h1>)
+        splashPage = (<HomePage />)
     }
 
     return (
