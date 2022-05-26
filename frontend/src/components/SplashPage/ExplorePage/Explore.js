@@ -20,9 +20,6 @@ const Explore = () => {
     return (
         <>
             <h1>Welcome to the Gallery</h1>
-            {/* <button onClick={() => history.push('/signup')}>Signup</button>
-            <button onClick={() => history.push('/login')}>Login</button>
-            <button onClick={() => history.push('/images')}>Images</button> */}
             <div className="explore-container">
                 <div>
                     {images.map(image => (
