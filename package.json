@@ -26,6 +26,7 @@
   "homepage": "https://github.com/Joon-Bae/wherernr-project#readme",
   "dependencies": {
     "aws-sdk": "^2.1136.0",
-    "multer": "^1.4.4"
+    "multer": "^1.4.4",
+    "react-icons": "^4.3.1"
   }
 }

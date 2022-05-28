@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
-import SignupFormPage from "./components/SignupFormPage";
+import SignupFormModal from "./components/SignupFormModal";
 import LoginFormModal from "./components/LoginFormModal";
 // import Explore from "./components/SplashPage/ExplorePage/Explore";
 import Splash from "./components/SplashPage/Splash";
@@ -26,7 +26,7 @@ function App() {
         <Switch>
           <Route exact path="/"><Splash isLoaded={isLoaded} /></Route>
           <Route path="/images/:id"><ImageDetails /></Route>
-          <Route path="/signup"><SignupFormPage /></Route>
+          <Route path="/signup"><SignupFormModal /></Route>
           <Route path="login"><LoginFormModal /></Route>
           <Route path="*"><h2>Page Not Found</h2></Route>
         </Switch>

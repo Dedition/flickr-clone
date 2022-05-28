@@ -29,16 +29,18 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='signup-form'>
+      <i className="fas fa-user-plus"></i>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>
-        Email
+        Email - This is SignupFormModal
         <input
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
           required
         />
       </label>
@@ -48,6 +50,7 @@ function SignupFormPage() {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
           required
         />
       </label>
@@ -57,6 +60,7 @@ function SignupFormPage() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
           required
         />
       </label>
@@ -66,10 +70,11 @@ function SignupFormPage() {
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
+          placeholder="Confirm Password"
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button type="submit" className="login-button">Sign Up</button>
     </form>
   );
 }
