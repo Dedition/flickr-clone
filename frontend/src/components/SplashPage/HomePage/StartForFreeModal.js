@@ -8,7 +8,7 @@ const StartForFreeModal = () => {
 
     return (
         <div>
-            <button onClick={toggle} id="start-free-button">Start For Frddxee</button>
+            <button onClick={toggle} id="start-free-button">Start For Free</button>
             {isOpen && (
                 <Modal onClose={toggle}>
                     <SignupForm />

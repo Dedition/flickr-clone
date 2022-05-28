@@ -1,7 +1,7 @@
 {
-  "name": "wherernr-project",
+  "name": "Flickr-project",
   "version": "1.0.0",
-  "description": "<h1 align= \"center\" dir=\"auto\">   ☕ Welcome to Wherernr 🛏️ </h1> <h5 align= \"center\" dir=\"auto\">   created by: Joon Bae   <br>clone: Airbnb</br> </h5>",
+  "description": "<h1 align= \"center\" dir=\"auto\">  Welcome to FlickrClone </h1> <h5 align= \"center\" dir=\"auto\">   created by: Leo Ladipo   <br>clone: Flickr</br> </h5>",
   "main": "index.js",
   "scripts": {
     "heroku-postbuild": "npm run build --prefix frontend",
@@ -11,22 +11,23 @@
     "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
     "start": "npm start --prefix backend",
-    "herokuResetDb": "heroku restart && heroku pg:reset DATABASE --confirm airbnbpixel && heroku run npm run sequelize db:migrate && heroku run npm run sequelize db:seed:all"
+    "herokuResetDb": "heroku restart && heroku pg:reset DATABASE --confirm flickrpixelclone && heroku run npm run sequelize db:migrate && heroku run npm run sequelize db:seed:all"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Joon-Bae/wherernr-project.git"
+    "url": "git+https://github.com/Dedition/flickr-clone"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Joon-Bae/wherernr-project/issues"
+    "url": "https://github.com/Dedition/flickr-clone"
   },
-  "homepage": "https://github.com/Joon-Bae/wherernr-project#readme",
+  "homepage": "https://github.com/Dedition/flickr-clone",
   "dependencies": {
     "aws-sdk": "^2.1136.0",
     "multer": "^1.4.4",
+    "heroku-cli": "^7.0.9",
     "react-icons": "^4.3.1"
   }
 }
