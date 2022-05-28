@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+// eslint-disable-next-line
 import { useParams, useHistory } from "react-router-dom";
 
 import { editImage } from "../../store/images";
