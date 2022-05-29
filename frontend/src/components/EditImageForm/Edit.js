@@ -7,7 +7,7 @@ const EditImageFormModal = ({ id }) => {
 
     return (
         <>
-            <button onClick={() => setIsOpen(true)} id='nav-upload'>Edit
+            <button onClick={() => setIsOpen(true)} id='edit-image'>
                 <i className="fas fa-edit"></i>
             </button>
             {isOpen && (
