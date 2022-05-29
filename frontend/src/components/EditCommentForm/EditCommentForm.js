@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { updateComment } from '../../store/comments';
@@ -10,6 +10,7 @@ const EditCommentForm = ({ isOpen, comment }) => {
 
 
     const [content, setContent] = useState(comment?.content);
+    const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,25 +29,34 @@ const EditCommentForm = ({ isOpen, comment }) => {
         }
     };
 
+    useEffect((errors = []) => {
+        if (content.length < 1) errors.push("Content is required");
+        setErrors(errors);
+    }, [content]);
+
     return (
-        <div className="upload-form fa-edit">
-            <h2>Edit Comment</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="content">Comment</label>
-                    <textarea
-                        type="text"
-                        name="content"
-                        id="content"
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <button type="submit">Update</button>
-                </div>
-            </form>
-        </div>
+        <form className="edit-comment-form" onSubmit={handleSubmit}>
+            <i className="fas fa-edit"> Comment </i>
+            <div className="edit-logo" />
+            <div className="form-group">
+                <ul className="login-errors">
+                    {errors.map((error, i) => (
+                        <li key={i}>{error}</li>
+                    ))}
+                </ul>
+                <label htmlFor="content">Comment</label>
+                <textarea
+                    type="text"
+                    name="content"
+                    id="content"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                />
+            </div>
+            <div className="form-group">
+                <button type="submit" disabled={!!errors.length}>Update</button>
+            </div>
+        </form>
     );
 }
 
