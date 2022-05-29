@@ -14,6 +14,7 @@ const Comments = () => {
     const dispatch = useDispatch();
 
     const [content, setContent] = useState('');
+    const [errors, setErrors] = useState([]);
 
     const sessionUser = useSelector(state => state.session.user);
 
@@ -43,6 +44,11 @@ const Comments = () => {
         dispatch(removeComment(id))
         return;
     };
+
+    useEffect((errors = []) => {
+        if (content.length < 1) errors.push("Penny for your thoughts?");
+        setErrors(errors);
+    }, [content]);
 
     return (
         <div className="image-details">
@@ -80,13 +86,18 @@ const Comments = () => {
                     </div>
                 </div>
                 <div className="image-details-body-comment-form">
+                    <div className="login-errors">
+                        {errors.map((error, i) => (
+                            <p key={i}>{error}</p>
+                        ))}
+                    </div>
                     <form onSubmit={handleSubmit}>
                         <textarea
                             value={content}
                             onChange={e => setContent(e?.target?.value)}
                             placeholder="What do you think?"
                         />
-                        <button type="submit">
+                        <button type="submit" disabled={!!errors.length}>
                             <i className="fas fa-paper-plane"></i>
                         </button>
                     </form>
