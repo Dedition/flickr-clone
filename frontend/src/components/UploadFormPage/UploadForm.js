@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const UploadForm = ({ isOpen }) => {
     const [location, setLocation] = useState("");
     const [content, setContent] = useState("");
     // eslint-disable-next-line
-    const [error, setError] = useState([]);
+    const [errors, setErrors] = useState([]);
 
     const handleImageChange = (e) => {
         setImage(e.target.files[0]);
@@ -36,6 +36,7 @@ const UploadForm = ({ isOpen }) => {
         setLocation("");
         setContent("");
         setImage(null);
+        setErrors([]);
 
         if (newImage) {
             history.push(`/images/${newImage.id}`);
@@ -43,6 +44,13 @@ const UploadForm = ({ isOpen }) => {
         }
     };
 
+    useEffect((error = []) => {
+        if (name.length < 1) error.push("Name is required");
+        if (location.length < 1) error.push("Location is required");
+        if (content.length < 1) error.push("Content is required");
+        if (image === null) error.push("Image is required");
+        setErrors(error);
+    }, [name, location, content, image]);
     return (
         <div className="container">
             <div className="row">
@@ -50,6 +58,11 @@ const UploadForm = ({ isOpen }) => {
                     <h1>Upload Image</h1>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
+                            <ul className="login-errors">
+                                {errors.map((error, i) => (
+                                    <li key={i}>{error}</li>
+                                ))}
+                            </ul>
                             <label htmlFor="name">Name</label>
                             <input
                                 type="text"
@@ -87,15 +100,8 @@ const UploadForm = ({ isOpen }) => {
                                 onChange={handleImageChange}
                             />
                         </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary" disabled={!!errors.length}>Submit</button>
                     </form>
-                    {error.length > 0 && (
-                        <div className="alert alert-danger">
-                            {error.map((err, i) => (
-                                <p key={i}>{err}</p>
-                            ))}
-                        </div>
-                    )}
                 </div>
             </div>
         </div>

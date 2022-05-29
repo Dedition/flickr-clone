@@ -59,6 +59,9 @@ const Comments = () => {
                         <div className="comment-metadata" key={comment?.id}>
                             <p>{comment?.content}</p>
                             <p>{comment?.createdAt}</p>
+                            <div className="body-comment">
+                                <p>{comment?.comment}</p>
+                            </div>
                             {sessionUser && sessionUser?.id === comment?.userId &&
                                 <>
                                     <button id={comment?.id} onClick={() => handleDelete(comment?.id)}>
@@ -67,9 +70,6 @@ const Comments = () => {
                                     <EditCommentFormModal comment={comment} />
                                 </>
                             }
-                            <div className="body-comment">
-                                <p>{comment?.comment}</p>
-                            </div>
                         </div>
                     ))}
                 </div>
