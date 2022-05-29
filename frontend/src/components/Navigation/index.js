@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
-import SignupFormPage from '../SignupFormModal/SignupForm';
+// import SignupFormPage from '../SignupFormModal/SignupForm';
 import UploadFormModal from '../UploadFormPage/UploadModal';
 
 import { GiMountainCave } from 'react-icons/gi';
@@ -44,8 +44,7 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <SignupFormPage />
-        <NavLink to="/signup">Sign Up</NavLink>
+        {/* <SignupFormPage /> */}
       </>
     );
   }

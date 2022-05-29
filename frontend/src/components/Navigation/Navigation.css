@@ -1,0 +1,132 @@
+.navigation {
+    display: flex;
+    background-color: #012020;
+    height: 45px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    opacity: 0.9;
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 10px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-right: 30px;
+}
+
+.navigation-logo {
+    color: white;
+    padding-top: 10px;
+}
+
+#signup-button,
+#login-button,
+#navigation-logout {
+    background-color: transparent;
+    color: aquamarine;
+    height: 15px;
+    border: none;
+    padding-top: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#signup-button {
+    position: absolute;
+    right: 8%;
+}
+
+#login-button {
+    position: absolute;
+    right: 20%;
+}
+
+#logout-button {
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    background-color: rgb(255, 86, 8);
+    color: white;
+    padding: 5px 10px;
+}
+
+#navigation-logout {
+    position: absolute;
+    right: 8%;
+}
+
+#nav-upload {
+    position: absolute;
+    right: 17%;
+    top: 30%;
+    cursor: pointer;
+}
+
+#explore-route {
+    position: absolute;
+    left: 15%;
+}
+
+#nav-search-form {
+    position: absolute;
+    left: 35%;
+    border: none;
+    border-radius: 3px;
+    min-width: 35%;
+    height: 30px;
+    background-color: #f3f5f6;
+    margin-top: 6px;
+    padding-bottom: 6px;
+
+}
+
+#nav-search-form input {
+    border: none;
+    background-color: #f3f5f6;
+    margin-top: 0px;
+    padding-top: 10px;
+    padding-left: 5px;
+    width: 90%;
+    outline: none;
+}
+
+#nav-search-form button {
+    border: none;
+    position: absolute;
+    right: 1%;
+    background-color: #f3f5f6;
+    margin-top: 5px;
+    cursor: pointer;
+    height: 19px;
+    border-left: 1px solid grey;
+    padding-left: 10px;
+    padding-left: 5px;
+}
+
+.profile-dropdown {
+    position: absolute;
+    right: 5%;
+    top: 65%;
+    padding: 10px;
+    border: 1px solid aquamarine;
+    border-top: none;
+    margin-right: 20px;
+    animation: fade 2s linear forwards;
+    background-color: white;
+    border-radius: 3px;
+}
+
+#dropdown-username {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+
+}

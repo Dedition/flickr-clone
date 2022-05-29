@@ -7,6 +7,7 @@ import "./Splash.css";
 
 const Splash = ({ isLoaded }) => {
     const sessionUser = useSelector(state => state.session.user);
+
     let splashPage;
     if (sessionUser) {
         splashPage = (<Explore />)

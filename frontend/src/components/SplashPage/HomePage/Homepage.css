@@ -15,7 +15,7 @@
 @keyframes bgfade {
     0% {
         background-image: url("../../../../assets/images/concert.png");
-        animation-timing-function: ease-in
+        animation-timing-function: ease-in;
     }
 
     50% {

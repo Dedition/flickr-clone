@@ -19,8 +19,8 @@ const Explore = () => {
 
     return (
         <>
-            <h1>Welcome to the Gallery</h1>
             <div className="explore-container">
+                <h1 style={{ paddingTop: '15px' }}>Welcome to the Gallery</h1>
                 <div>
                     {images.map(image => (
                         <div className='images' key={image?.id}>
