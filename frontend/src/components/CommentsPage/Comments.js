@@ -46,62 +46,50 @@ const Comments = () => {
     };
 
     useEffect((errors = []) => {
-        if (content.length < 1) errors.push("Penny for your thoughts?");
+        if (content.length < 1) errors.push("");
         setErrors(errors);
     }, [content]);
 
     return (
-        <div className="image-details">
-            <div className="image-details-header">
-            </div>
-            <div className="image-details-body">
-                <div className="image-details-body-comments">
-                    <div className="image-details-body-comments-header">
-                        <h2>Comments</h2>
-                    </div>
-                    <div className="image-details-body-comments-body">
-                        {comments.map(comment => (
-                            <div className="image-details-body-comments-body-comment" key={comment?.id}>
-                                <div className="image-details-body-comments-body-comment-header">
-                                    <div className="image-details-body-comments-body-comment-header-user">
-                                        <p>{comment?.content}</p>
-                                        <div className="image-details-body-comments-body-comment-header-user-info">
-                                            <p>{comment?.createdAt}</p>
-                                        </div>
-                                    </div>
-                                    {sessionUser && sessionUser?.id === comment?.userId &&
-                                        <>
-                                            <button id={comment?.id} onClick={() => handleDelete(comment?.id)}>
-                                                <i className="fas fa-trash-alt"></i>
-                                            </button>
-                                            <EditCommentFormModal comment={comment} />
-                                        </>
-                                    }
-                                </div>
-                                <div className="image-details-body-comments-body-comment-body">
-                                    <p>{comment?.comment}</p>
-                                </div>
+        <div className="comments-details">
+            <div className="comments-header">
+                <h2>Comments</h2>
+                <div className="comments-container">
+                    {comments.map(comment => (
+                        <div className="comment-metadata" key={comment?.id}>
+                            <p>{comment?.content}</p>
+                            <p>{comment?.createdAt}</p>
+                            {sessionUser && sessionUser?.id === comment?.userId &&
+                                <>
+                                    <button id={comment?.id} onClick={() => handleDelete(comment?.id)}>
+                                        <i className="fas fa-trash-alt"></i>
+                                    </button>
+                                    <EditCommentFormModal comment={comment} />
+                                </>
+                            }
+                            <div className="body-comment">
+                                <p>{comment?.comment}</p>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
-                <div className="image-details-body-comment-form">
-                    <div className="login-errors">
-                        {errors.map((error, i) => (
-                            <p key={i}>{error}</p>
-                        ))}
-                    </div>
-                    <form onSubmit={handleSubmit}>
-                        <textarea
-                            value={content}
-                            onChange={e => setContent(e?.target?.value)}
-                            placeholder="What do you think?"
-                        />
-                        <button type="submit" disabled={!!errors.length}>
-                            <i className="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
+            </div>
+            <div className="body-comment-form">
+                <div className="login-errors">
+                    {errors.map((error, i) => (
+                        <p key={i}>{error}</p>
+                    ))}
                 </div>
+                <form onSubmit={handleSubmit}>
+                    <textarea
+                        value={content}
+                        onChange={e => setContent(e?.target?.value)}
+                        placeholder="What do you think?"
+                    />
+                    <button type="submit" disabled={!!errors.length}>
+                        <i className="fas fa-paper-plane"></i>
+                    </button>
+                </form>
             </div>
         </div>
     );
