@@ -20,6 +20,7 @@ const ImageDetails = () => {
     let images = useSelector(state => state.images);
     images = Object.values(images);
     const image = images.find(image => image.id === +id);
+    const index = images.indexOf(image);
 
     useEffect(() => {
         dispatch(getImages());
@@ -51,40 +52,46 @@ const ImageDetails = () => {
     }
 
     return (
-        <div className="image-details">
+        <div className="image-details-container">
             <div className="image-details-header">
-                <Link to="/">
-                    <i className="fas fa-arrow-left"></i>
-                </Link>
+                <Link to="/" className="back-arrow"><i className="fas fa-arrow-left" style={{ fontSize: "13px" }}>{"  "} Back to Explore</i></Link>
             </div>
             {sessionUser && deleteEditLink}
             <div className="image-details-body">
                 <div className="image-details-page-image">
+                    <Link to={index > 0 ? `/images/${images[index - 1].id}` : null}
+                        className={index > 0 ? "forward-back-arrows" : "hidden"}>
+                        <i className="fas fa-chevron-left"></i>
+                    </Link>
+                    <Link to={index < images.length - 1 ? `/images/${images[index + 1].id}` : null}
+                        className={index < images.length - 1 ? "forward-back-arrows" : "hidden"}>
+                        <i className="fas fa-chevron-right"></i>
+                    </Link>
                     <h2>{image?.name}</h2>
                     {/* eslint-disable-next-line*/}
                     <img src={image?.imageUrl} />
                 </div>
                 <div className="image-details-page-info">
                     <div className="image-details-page-info-user">
-                        {/* <div className="image-details-page-info-user-name">
+                        <div className="image-details-page-info-user-name">
                             <i className="fas fa-user-circle"></i>
-                            Author: {image?.name}
-                        </div> */}
+                            <h3>Author: {image?.name}</h3>
+                        </div>
                     </div>
                     <div className="image-details-page-info-location">
                         <div className="image-details-page-info-location-icon">
                             <i className="fas fa-camera-retro"></i>
-                            Captured at: {image?.location}
+                            <p>Captured at: {image?.location}</p>
                         </div>
                         <div className="image-details-page-info-location-date">
                             <i className="far fa-calendar-alt"></i>
-                            Uploaded on: {date}
+                            <p>Uploaded on: {date}</p>
                         </div>
                     </div>
                     <div className="image-details-page-info-content">
                         <div className="image-details-page-info-content-icon">
                             <i className="fas fa-info-circle"></i>
-                            Description: {image?.content}
+                            <p>Description: {image?.content}</p>
                         </div>
                     </div>
                 </div>

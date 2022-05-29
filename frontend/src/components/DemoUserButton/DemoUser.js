@@ -1,4 +1,4 @@
-import { useDispatch, useState } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 
 import "./DemoUser.css";
