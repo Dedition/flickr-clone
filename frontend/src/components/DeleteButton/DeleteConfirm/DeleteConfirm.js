@@ -1,30 +1,25 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
-import { deleteImageAction } from "../../../store/images";
+//* React
+import { useState } from "react";
+
+//* Files
+import { Modal } from "../../../context/Modal";
+import DeleteButton from "../DeleteButton";
 
 const DeleteConfirm = () => {
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const { id } = useSelector(state => state.images);
-
-    useEffect(() => {
-        dispatch(deleteImageAction(id));
-        history.push("/");
-    }, [dispatch, history, id]);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="delete-confirm-page">
-            <div className="delete-confirm-page-text">
-                <h1>Are you sure you want to delete this image?</h1>
-                <p>This action cannot be undone.</p>
-            </div>
-            <div className="delete-confirm-page-buttons">
-                <button className="delete-confirm-page-buttons-yes">Yes</button>
-                <button className="delete-confirm-page-buttons-no">No</button>
-            </div>
-        </div>
+        <>
+            <button onClick={() => setIsOpen(true)} id="delete-button">
+                <i className="fas fa-trash-alt"></i>
+            </button>
+            {isOpen && (
+                <Modal onClose={() => isOpen(false)}>
+                    <DeleteButton isOpen={setIsOpen} />
+                </Modal>
+            )}
+        </>
     );
-}
+};
 
 export default DeleteConfirm;

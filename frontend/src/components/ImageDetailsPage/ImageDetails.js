@@ -9,6 +9,7 @@ import { getImages } from "../../store/images";
 
 //*                         Files
 import EditImageFormModal from "../EditImageForm/Edit";
+import DeleteConfirm from "../DeleteButton/DeleteConfirm/DeleteConfirm";
 import Comments from "../CommentsPage/Comments";
 import "./ImageDetails.css";
 
@@ -92,9 +93,7 @@ const ImageDetails = () => {
         deleteEditLink = (
             <div className="delete-edit-link">
                 <EditImageFormModal />
-                <button onClick={handleDelete}>
-                    <i className="fas fa-trash-alt"></i>
-                </button>
+                <DeleteConfirm />
             </div>
         );
     }
