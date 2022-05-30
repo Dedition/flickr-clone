@@ -1,6 +1,25 @@
-.form-control {
-    display: flex;
-    flex-direction: column;
-    padding: 40px;
-    width: 100%;
+.upload-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(8, 38, 102, 0.8);
+    color: white;
+    border-radius: 10px;
+}
+
+form:hover {
+    width: 500px;
+    height: 350px;
+    transition: width 5s ease-in-out;
+    transition: height 5s ease-in-out;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+}
+
+.upload-title {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
 }

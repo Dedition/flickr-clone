@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 
 import { uploadImage } from "../../store/images";
 
+import "./UploadForm.css";
+
 const UploadForm = ({ isOpen }) => {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -17,9 +19,7 @@ const UploadForm = ({ isOpen }) => {
     // eslint-disable-next-line
     const [errors, setErrors] = useState([]);
 
-    const handleImageChange = (e) => {
-        setImage(e.target.files[0]);
-    };
+    const handleImageChange = (e) => setImage(e.target.files[0]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -51,59 +51,48 @@ const UploadForm = ({ isOpen }) => {
         if (image === null) error.push("Image is required");
         setErrors(error);
     }, [name, location, content, image]);
+
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-md-6 offset-md-3">
-                    <h1>Upload Image</h1>
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <ul className="login-errors">
-                                {errors.map((error, i) => (
-                                    <li key={i}>{error}</li>
-                                ))}
-                            </ul>
-                            <label htmlFor="name">Name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="location">Location</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="location"
-                                value={location}
-                                onChange={(e) => setLocation(e.target.value)}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="content">Content</label>
-                            <textarea
-                                className="form-control"
-                                id="content"
-                                value={content}
-                                onChange={(e) => setContent(e.target.value)}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="image">Image</label>
-                            <input
-                                type="file"
-                                className="form-control-file"
-                                id="image"
-                                onChange={handleImageChange}
-                            />
-                        </div>
-                        <button type="submit" className="btn btn-primary" disabled={!!errors.length}>Submit</button>
-                    </form>
-                </div>
-            </div>
+        <div className="upload-modal">
+            <h1 className="upload-title">Upload Image</h1>
+            <form onSubmit={handleSubmit}>
+                <ul className="upload-errors errors">
+                    {errors.map((error, i) => (
+                        <li key={i}>{error}</li>
+                    ))}
+                </ul>
+                <label htmlFor="name">Name</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+                <label htmlFor="location">Location</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    id="location"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                />
+                <label htmlFor="content">Content</label>
+                <textarea
+                    className="form-control"
+                    id="content"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                />
+                <label htmlFor="image">Image</label>
+                <input
+                    type="file"
+                    className="form-control-file"
+                    id="image"
+                    onChange={handleImageChange}
+                />
+                <button type="submit" className="btn btn-primary" disabled={!!errors.length}>Submit</button>
+            </form>
         </div>
     );
 }
