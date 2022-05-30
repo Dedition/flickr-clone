@@ -1,5 +1,6 @@
 .image-details-card {
     background-color: #012d2d;
+    border-radius: 7.2px;
     color: white;
     margin-top: 50px;
     position: relative;
@@ -86,6 +87,17 @@
     font-size: 50px;
     position: absolute;
     right: 15%;
+    top: 30px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#delete-image {
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    right: 20%;
     top: 30px;
     border: none;
     background-color: transparent;

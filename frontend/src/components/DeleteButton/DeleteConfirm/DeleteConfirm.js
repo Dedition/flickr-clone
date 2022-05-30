@@ -10,7 +10,7 @@ const DeleteConfirm = () => {
 
     return (
         <>
-            <button onClick={() => setIsOpen(true)} id="delete-button">
+            <button onClick={() => setIsOpen(true)} id="delete-image">
                 <i className="fas fa-trash-alt"></i>
             </button>
             {isOpen && (
