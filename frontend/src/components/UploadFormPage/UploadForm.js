@@ -55,7 +55,7 @@ const UploadForm = ({ isOpen }) => {
     return (
         <div className="upload-modal">
             <h1 className="upload-title">Upload Image</h1>
-            <form onSubmit={handleSubmit}>
+            <form name="upload-form" onSubmit={handleSubmit}>
                 <ul className="upload-errors errors">
                     {errors.map((error, i) => (
                         <li key={i}>{error}</li>
@@ -66,6 +66,7 @@ const UploadForm = ({ isOpen }) => {
                     type="text"
                     className="form-control"
                     id="name"
+                    autoComplete="off"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
@@ -74,6 +75,7 @@ const UploadForm = ({ isOpen }) => {
                     type="text"
                     className="form-control"
                     id="location"
+                    autoComplete="off"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                 />
@@ -81,6 +83,7 @@ const UploadForm = ({ isOpen }) => {
                 <textarea
                     className="form-control"
                     id="content"
+                    autoComplete="off"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                 />
@@ -88,10 +91,9 @@ const UploadForm = ({ isOpen }) => {
                 <input
                     type="file"
                     className="form-control-file"
-                    id="image"
                     onChange={handleImageChange}
                 />
-                <button type="submit" className="btn btn-primary" disabled={!!errors.length}>Submit</button>
+                <button type="submit" className="upload-button" disabled={!!errors.length}>Submit</button>
             </form>
         </div>
     );
