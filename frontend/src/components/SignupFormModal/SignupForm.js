@@ -30,12 +30,12 @@ function SignupFormPage() {
 
   return (
     <form onSubmit={handleSubmit} className='signup-form'>
-      <i className="fas fa-user-plus"></i>
+      <i className="fas fa-user-plus" id="sign-icon"></i>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>
-        Email - This is SignupFormModal
+        <p>Email</p>
         <input
           type="text"
           value={email}
@@ -45,7 +45,7 @@ function SignupFormPage() {
         />
       </label>
       <label>
-        Username
+        <p>Username</p>
         <input
           type="text"
           value={username}
@@ -55,7 +55,7 @@ function SignupFormPage() {
         />
       </label>
       <label>
-        Password
+        <p>Password</p>
         <input
           type="password"
           value={password}
@@ -65,7 +65,7 @@ function SignupFormPage() {
         />
       </label>
       <label>
-        Confirm Password
+        <p>Confirm Password</p>
         <input
           type="password"
           value={confirmPassword}
