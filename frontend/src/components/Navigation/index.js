@@ -34,7 +34,7 @@ function Navigation({ isLoaded }) {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search"
+            placeholder="Search for title..."
             required
           />
           <button type="submit"><i className="fas fa-search"></i></button>

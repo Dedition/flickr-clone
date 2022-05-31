@@ -117,7 +117,7 @@ const ImageDetails = () => {
                 </div>
                 <div className="image-details-info">
                     <i className="fa-solid fa-user-group" id="fa-icons author-icon"></i>
-                    <h3 id="author">Taken by {image?.name}</h3>
+                    <h3 id="author">Title: {image?.name}</h3>
                     <i className="fas fa-camera-retro" id="fa-icons"></i>
                     <p>Captured at: {image?.location}</p>
                     <i className="fa-solid fa-pen" id="fa-icons"></i>
