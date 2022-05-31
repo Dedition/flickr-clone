@@ -28,13 +28,13 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <NavLink exact to="/" id='explore-route'> Explore </NavLink>
+        <NavLink exact to="/" id='explore-route'>Explore</NavLink>
         <form id="nav-search-form" onSubmit={handleSubmit}>
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search"
+            placeholder="Search for title"
             required
           />
           <button type="submit"><i className="fas fa-search"></i></button>
