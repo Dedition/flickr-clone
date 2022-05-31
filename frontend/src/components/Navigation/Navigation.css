@@ -1,6 +1,6 @@
 .navigation {
     display: flex;
-    background-color: #012020;
+    background-color: rgba(0, 0, 0, 0.5);
     height: 45px;
     padding-left: 30px;
     padding-right: 30px;

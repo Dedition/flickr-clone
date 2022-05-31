@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+//* React
+import { useState } from 'react';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { FaPhoenixFramework } from 'react-icons/fa';
 
+//* Files
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
-// import SignupFormPage from '../SignupFormModal/SignupForm';
+import SignupFormModal from '../SignupFormModal';
 import UploadFormModal from '../UploadFormPage/UploadModal';
-
-import { GiMountainCave } from 'react-icons/gi';
 import './Navigation.css';
+
 
 function Navigation({ isLoaded }) {
   const history = useHistory();
@@ -44,17 +46,17 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal />
-        {/* <SignupFormPage /> */}
+        <SignupFormModal />
       </>
     );
   }
 
   return (
     <nav className="navigation">
-      <div className="navigation-logo">
-        <GiMountainCave />
+      <Link to="/" id='nav-logo' className="navigation-logo">
+        <FaPhoenixFramework />
         <span>Flickr</span>
-      </div>
+      </Link>
       {isLoaded && sessionLinks}
     </nav>
   );
