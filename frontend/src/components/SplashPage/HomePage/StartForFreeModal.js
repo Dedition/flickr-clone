@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+//* React
+import { useState } from 'react';
+
+//* Files
 import { Modal } from "../../../context/Modal";
 import SignupForm from '../../SignupFormModal/SignupForm';
+// import "./StartForFreeModal.css";
+
 
 const StartForFreeModal = () => {
     const [isOpen, setIsOpen] = useState(false);

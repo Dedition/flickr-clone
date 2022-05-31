@@ -4,7 +4,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { GiMountainCave } from 'react-icons/gi';
+import { FaPhoenixFramework } from 'react-icons/fa';
 
 import DemoUser from '../DemoUserButton/DemoUser';
 import './LoginForm.css';
@@ -33,7 +33,7 @@ function LoginForm() {
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <div className='login-logo'>
-        <GiMountainCave size={50} />
+        <FaPhoenixFramework size={50} />
       </div>
       <div className="login-msg">
         <h1>Login Here</h1>
