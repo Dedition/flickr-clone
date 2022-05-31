@@ -16,8 +16,8 @@ const SearchQuery = () => {
     images = Object.values(images);
 
     images.sort((a, b) => {
-        if (a.createdAt < b.createdAt) return -1;
-        if (a.createdAt > b.createdAt) return 1;
+        if (a.createdAt < b.createdAt) return 1;
+        if (a.createdAt > b.createdAt) return -1;
         return 0;
     });
 
@@ -25,7 +25,7 @@ const SearchQuery = () => {
     console.log(queriedImages);
     useEffect(() => {
         dispatch(getImages(searchQuery));
-    }, [dispatch]);
+    }, [dispatch, searchQuery]);
 
 
     return (
@@ -33,11 +33,11 @@ const SearchQuery = () => {
             <h1 id="query-header" style={{ textAlign: 'center', marginTop: "50px" }}>Search Results for: {searchQuery}</h1>
             {!queriedImages.length ? (
                 <div className='no-results'>
-                    <i className="fa-solid fa-otter" id="no-result-icon"></i>
+                    <i className="fa-solid fa-alicorn" id="no-result-icon"></i>
                     <h2 id="no-result-text">No results found! Sorry! Do a different one?</h2>
                 </div>
             ) : (
-                images.map(image => (
+                queriedImages.map(image => (
                     <div className='image-container' key={image?.id}>
                         <Link to={`/images/${image.id}`}>
                             <img key={image?.id} src={image.imageUrl} alt={image.name} />
