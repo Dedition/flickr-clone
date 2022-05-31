@@ -101,7 +101,7 @@ const ImageDetails = () => {
     return (
         <div className="image-details-container">
             <div className="image-details-card">
-                <Link to="/" className="back-arrow"><i className="fas fa-arrow-left" style={{ fontSize: "13px" }}>{"  "} Back to Explore</i></Link>
+                <Link to="/" className="back-arrow"><i className="fas fa-arrow-left" style={{ fontSize: "13px" }}>Back to Explore</i></Link>
                 {sessionUser && deleteEditLink}
                 <div className="image-body">
                     <Link to={index > 0 ? `/images/${images[index - 1].id}` : null}

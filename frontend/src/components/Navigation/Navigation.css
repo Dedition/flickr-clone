@@ -27,12 +27,14 @@
     padding-top: 10px;
 }
 
+/* 00bcd4 */
+
 #signup-button,
 #login-button,
 #navigation-logout {
     background-color: transparent;
-    color: aquamarine;
-    height: 15px;
+    color: #00bcd4;
+    height: 20px;
     border: none;
     padding-top: 10px;
     font-size: 16px;
