@@ -4,7 +4,6 @@ import { Route, Switch } from "react-router-dom";
 
 import SignupFormModal from "./components/SignupFormModal";
 import LoginFormModal from "./components/LoginFormModal";
-// import Explore from "./components/SplashPage/ExplorePage/Explore";
 import Splash from "./components/SplashPage/Splash";
 
 import * as sessionActions from "./store/session";

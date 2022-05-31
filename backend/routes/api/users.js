@@ -1,7 +1,7 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Album, Comment, Image } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
@@ -41,5 +41,99 @@ router.post(
     });
   }),
 );
+
+
+// * ——————————————————————————————————————————————————————————————————————————————————
+// *                                    Albums
+// * ——————————————————————————————————————————————————————————————————————————————————
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                          GET ALL IMAGES OF A USER
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
+router.get('/:id(\\d+)/images', asyncHandler(async (req, res) => {
+  const userId = await parseInt(req.params.id, 10);
+
+  const images = await User.findAll({
+    where: { userId }
+  });
+
+  return res.json({ images });
+}));
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                          GET ALL LIKED IMAGES OF A USER
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
+router.get('/:id(\\d+)/album', asyncHandler(async (req, res) => {
+  const likedUserId = await parseInt(req.params.id, 10);
+
+  const likedImages = await User.findAll({
+    include: [{
+      model: Album, where: { likedUserId }
+    }, User, Comment
+    ]
+  }
+  );
+
+  return res.json({ likedImages });
+}));
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                          CHECK IF IMAGE EXISTS IN ALBUM OF CURRENT USER
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
+router.get('/:id(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (req, res) => {
+  const userId = await parseInt(req.params.id, 10);
+  const imageId = await parseInt(req.params.imageId, 10);
+
+  const album = await User.findAll({
+    where: { userId, imageId },
+  });
+
+  if (album.length === 0) {
+    return res.status(404).json({
+      message: 'Image not found in album.'
+    });
+  }
+
+  return res.json({ album });
+}));
+
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                          ADD IMAGE TO ALBUM OF CURRENT USER
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
+router.post('/:id(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (req, res) => {
+  const albumUserId = await parseInt(req.params.id, 10);
+  const imageId = await parseInt(req.params.imageId, 10);
+
+  await Album.create({ albumUserId, imageId });
+
+  const image = await Image.findByPk(imageId);
+
+  return res.json({ message: 'Image added to album.', image });
+}));
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                          REMOVE IMAGE FROM ALBUM OF CURRENT USER
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
+router.delete('/:id(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (req, res) => {
+  const albumUserId = await parseInt(req.params.id, 10);
+  const imageId = await parseInt(req.params.imageId, 10);
+
+  const album = await Album.findOne({
+    where: { albumUserId, imageId }
+  });
+
+  if (!album) return res.status(404).json({ message: 'Failed: Image not found in album.' });
+
+  await album.destroy();
+
+  return res.json({ message: 'Image removed from album.' });
+
+}));
 
 module.exports = router;
