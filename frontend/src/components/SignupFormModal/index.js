@@ -1,4 +1,7 @@
+//* React
 import { useState } from "react";
+
+//* Files & Components
 import { Modal } from '../../context/Modal';
 import SignupForm from './SignupForm';
 

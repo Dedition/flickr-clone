@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
 
 function LoginFormModal() {
-  const [showModal, setShowModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <button onClick={() => setShowModal(true)} id="login-button">Log In</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+      <button onClick={() => setIsOpen(true)} id="login-button">Log In</button>
+      {isOpen && (
+        <Modal onClose={() => setIsOpen(false)}>
           <LoginForm />
         </Modal>
       )}

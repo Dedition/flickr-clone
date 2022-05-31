@@ -1,11 +1,13 @@
-// frontend/src/components/LoginFormPage/index.js
-import React, { useState } from 'react';
-import * as sessionActions from '../../store/session';
+//* React
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-
 import { FaPhoenixFramework } from 'react-icons/fa';
 
+//* Store
+import * as sessionActions from '../../store/session';
+
+//* Files & Components
 import DemoUser from '../DemoUserButton/DemoUser';
 import './LoginForm.css';
 

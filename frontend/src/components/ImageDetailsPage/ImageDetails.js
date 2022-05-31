@@ -1,13 +1,13 @@
 //*                         React
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 //*                         Store
-import { deleteImageAction } from "../../store/images";
+// import { deleteImageAction } from "../../store/images";
 import { getImages } from "../../store/images";
 
-//*                         Files
+//*                         Files & Components
 import EditImageFormModal from "../EditImageForm/Edit";
 import DeleteConfirm from "../DeleteButton/DeleteConfirm/DeleteConfirm";
 import Comments from "../CommentsPage/Comments";
@@ -64,7 +64,7 @@ import "./ImageDetails.css";
 const ImageDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
 
     let images = useSelector(state => state.images);
     images = Object.values(images);
@@ -75,12 +75,12 @@ const ImageDetails = () => {
         dispatch(getImages());
     }, [dispatch]);
 
-    const handleDelete = async (e) => {
-        e.preventDefault();
-        await dispatch(deleteImageAction(id))
-            .then(() => { history.push("/") })
-            .catch(err => console.log(err));
-    };
+    // const handleDelete = async (e) => {
+    //     e.preventDefault();
+    //     await dispatch(deleteImageAction(id))
+    //         .then(() => { history.push("/") })
+    //         .catch(err => console.log(err));
+    // };
 
     const sessionUser = useSelector(state => state.session.user);
 
@@ -108,6 +108,7 @@ const ImageDetails = () => {
                         className={index > 0 ? "forward-back-arrows" : "hidden"}>
                         <i className="fas fa-chevron-left"></i>
                     </Link>
+                    {/* eslint-disable-next-line */}
                     <img src={image?.imageUrl} id="image-details-img" />
                     <Link to={index < images.length - 1 ? `/images/${images[index + 1].id}` : null}
                         className={index < images.length - 1 ? "forward-back-arrows" : "hidden"}>

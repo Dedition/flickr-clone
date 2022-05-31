@@ -4,7 +4,7 @@ import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FaPhoenixFramework } from 'react-icons/fa';
 
-//* Files
+//* Files & Components
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
@@ -35,6 +35,7 @@ function Navigation({ isLoaded }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search"
+            required
           />
           <button type="submit"><i className="fas fa-search"></i></button>
         </form>
