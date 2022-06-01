@@ -15,7 +15,7 @@
     border-radius: 3px;
     box-sizing: border-box;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 16px;
     height: 100px;
     margin-bottom: 20px;
     padding: 10px;
@@ -25,13 +25,13 @@
 
 #edit-image-button {
     background: #000000;
-    border: 1px solid #eaeaea;
+    border: 1px solid #3f3f3f;
     border-radius: 3px;
     box-sizing: border-box;
     color: rgb(62, 229, 255);
     cursor: pointer;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 16px;
     height: 40px;
     margin-bottom: 20px;
     padding: 10px;

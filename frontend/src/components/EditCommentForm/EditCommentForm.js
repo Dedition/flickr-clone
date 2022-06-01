@@ -1,7 +1,12 @@
+//* React
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+//* Store
 import { updateComment } from '../../store/comments';
+
+//* Files & Components
+import "./EditCommentForm.css";
 
 const EditCommentForm = ({ isOpen, comment }) => {
     const dispatch = useDispatch();
@@ -36,26 +41,21 @@ const EditCommentForm = ({ isOpen, comment }) => {
 
     return (
         <form className="edit-comment-form" onSubmit={handleSubmit}>
-            <i className="fas fa-edit"> Comment </i>
-            <div className="edit-logo" />
-            <div className="form-group">
-                <ul className="login-errors">
-                    {errors.map((error, i) => (
-                        <li key={i}>{error}</li>
-                    ))}
-                </ul>
-                <label htmlFor="content">Comment</label>
-                <textarea
-                    type="text"
-                    name="content"
-                    id="content"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                />
-            </div>
-            <div className="form-group">
-                <button type="submit" disabled={!!errors.length}>Update</button>
-            </div>
+            <i className="fas fa-edit" id="edit-comment-icon"></i>
+            <ul className="login-errors">
+                {errors.map((error, i) => (
+                    <li key={i}>{error}</li>
+                ))}
+            </ul>
+            <label htmlFor="content">Comment</label>
+            <textarea
+                type="text"
+                name="content"
+                id="content"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+            />
+            <button type="submit" disabled={!!errors.length} id="edit-comment-button">Update</button>
         </form>
     );
 }
