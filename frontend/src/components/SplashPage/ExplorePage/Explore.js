@@ -1,8 +1,12 @@
+//*  React
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+
+//* Store
 import { getImages } from '../../../store/images';
 
+//* Files & Components
 import "./Explore.css";
 
 const Explore = () => {
@@ -22,7 +26,7 @@ const Explore = () => {
     return (
         <>
             <div className="explore-container">
-                <h1 style={{ paddingTop: '15px' }}>Welcome to the Gallery</h1>
+                <h1 id="explore-title">Explore</h1>
                 <div className='image-container'>
                     {images.map(image => (
                         <div className='explore-image' key={image?.id}>

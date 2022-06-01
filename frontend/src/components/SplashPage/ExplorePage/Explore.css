@@ -8,6 +8,13 @@
     background-color: #fafafa;
 }
 
+#explore-title {
+    font-size: 40px;
+    font-weight: bold;
+    color: #3f3f3f;
+    margin-top: 45px;
+}
+
 .image-container {
     column-count: 4;
     column-gap: 10px;
