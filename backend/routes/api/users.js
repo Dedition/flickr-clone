@@ -54,8 +54,8 @@ router.post(
 router.get('/:id(\\d+)/images', asyncHandler(async (req, res) => {
   const userId = await parseInt(req.params.id, 10);
 
-  const images = await User.findAll({
-    where: { userId }
+  const images = await Image.findAll({
+    where: { userId },
   });
 
   return res.json({ images });
@@ -68,7 +68,7 @@ router.get('/:id(\\d+)/images', asyncHandler(async (req, res) => {
 router.get('/:id(\\d+)/album', asyncHandler(async (req, res) => {
   const likedUserId = await parseInt(req.params.id, 10);
 
-  const likedImages = await User.findAll({
+  const likedImages = await Image.findAll({
     include: [{
       model: Album, where: { likedUserId }
     }, User, Comment

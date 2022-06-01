@@ -88,7 +88,7 @@ export const updateAlbum = (userId, imageId, data) => async (dispatch) => {
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const removeAlbum = (userId, imageId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/users/${userId}/images/${imageId}`, {
+    const response = await csrfFetch(`/api/users/${userId}/images/${imageId}/album`, {
         method: 'DELETE'
     });
 
@@ -118,7 +118,8 @@ const albumReducer = (state = initialState, action) => {
         }
         case LOAD: {
             const allLikedImages = {};
-            action.likedImage.forEach(image => {
+            // console.log(action)
+            action.likedImage.images.forEach(image => {
                 allLikedImages[image.id] = image;
             });
             return {
