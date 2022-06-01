@@ -68,3 +68,18 @@ input[type="file"] {
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
 }
+
+/** Upload Modal */
+
+#nav-upload-button {
+    position: fixed;
+    top: 2.5%;
+    left: 83%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 22, 70, 0.8);
+    color: white;
+    border-radius: 10px;
+    width: 7%;
+    height: 3%;
+    cursor: pointer;
+}
