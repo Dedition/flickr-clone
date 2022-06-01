@@ -33,7 +33,7 @@ const ImageDetails = () => {
 
     const album = useSelector(state => state.album);
     const existsInAlbum = album[id] !== undefined;
-    console.log(existsInAlbum);
+    // console.log(existsInAlbum);
     // album = Object.values(album);
 
     const sessionUser = useSelector(state => state.session.user);
@@ -41,6 +41,7 @@ const ImageDetails = () => {
     useEffect(() => {
         dispatch(getImages());
         dispatch(getAlbum(sessionUser.id));
+        //eslint-disable-next-line
     }, [dispatch]);
 
     const handleCheckbox = (e) => {
@@ -72,13 +73,13 @@ const ImageDetails = () => {
         <div className="image-details-container">
             <div className="image-details-card">
                 <Link to="/" className="back-arrow"><i className="fas fa-arrow-left" style={{ fontSize: "13px" }}>Back to Explore</i></Link>
-                <input
+                {/* <input
                     className="heart-icon"
                     type="checkbox"
                     id="heart"
                     checked={existsInAlbum}
                     onChange={handleCheckbox}
-                />
+                /> */}
                 {sessionUser && deleteEditLink}
                 <div className="image-body">
                     <Link to={index > 0 ? `/images/${images[index - 1].id}` : null}
