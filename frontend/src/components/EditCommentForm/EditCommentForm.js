@@ -47,7 +47,7 @@ const EditCommentForm = ({ isOpen, comment }) => {
                     <li key={i}>{error}</li>
                 ))}
             </ul>
-            <label htmlFor="content">Comment</label>
+            <label htmlFor="content"><h2>Comment</h2></label>
             <textarea
                 type="text"
                 name="content"

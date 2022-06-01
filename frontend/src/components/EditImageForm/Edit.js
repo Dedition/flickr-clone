@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+// * React
+import { useState } from 'react';
+
+//* Files & Components
 import { Modal } from '../../context/Modal';
 import EditImageForm from './EditImageForm';
 
