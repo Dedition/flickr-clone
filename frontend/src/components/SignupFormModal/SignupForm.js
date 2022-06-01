@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+//* React
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+
+//* Store
 import * as sessionActions from "../../store/session";
+
+//* Files & Components
 import './SignupForm.css';
 
 function SignupFormPage() {
@@ -74,7 +79,7 @@ function SignupFormPage() {
           required
         />
       </label>
-      <button type="submit" className="login-button">Sign Up</button>
+      <button type="submit" className="signup-button">Sign Up</button>
     </form>
   );
 }

@@ -1,75 +1,65 @@
-.login-form {
-    display: flex;
+#modal {
+    width: 100%;
+    height: 100%;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    flex-direction: column;
-    color: white;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-    transform: translate(-50%, -50%);
-    background-color: rgba(165, 100, 8, 0.8);
-    height: 420px;
-    width: 350px;
-    transition: width 1s ease-out;
-    transition: height 1s ease-out;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99999;
+    border-radius: 3px;
 }
 
-.login-form:hover {
-    width: 50%;
-    height: 60%;
+#modal-content {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 3px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.33);
+    background-color: rgba(74, 85, 4, 0.8);
 }
 
-.login-logo {
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    margin-top: 115px;
-}
-
-.login-msg {
-    width: fit-content;
-    margin: auto;
-    font-weight: 500;
-    font-size: 20px;
-    color: #012020;
-
-}
-
-.login-errors {
-    color: red;
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
-    margin-right: 20px;
-}
-
-.login-inputs {
-    margin-left: 20px;
-    margin-bottom: 80px;
-}
-
-.login-input {
-    margin-bottom: 10px;
-    margin-top: 10px;
+#login-logo {
+    display: flex;
     width: 80%;
-    height: 40px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    /* border-radius: 3px; */
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.33);
+    background-color: rgba(170, 190, 44, 0.8);
+}
+
+#login-msg {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.login-form input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid rgb(4, 3, 3);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login-form input[type="password"] {
+    width: 100%;
+    margin: 5px 0;
+    border: 1px solid rgb(4, 3, 3);
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .login-button {
-    background-color: rgb(8, 97, 250);
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgb(178, 181, 7);
     color: white;
-    border: none;
-    height: 30px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    border-radius: 2px;
-    cursor: pointer;
+    box-sizing: border-box;
 }

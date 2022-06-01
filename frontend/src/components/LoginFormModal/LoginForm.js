@@ -34,37 +34,31 @@ function LoginForm() {
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
-      <div className='login-logo'>
-        <FaPhoenixFramework size={50} />
-      </div>
-      <div className="login-msg">
-        <h1>Login Here</h1>
-      </div>
+      <FaPhoenixFramework size={50} id="login-logo" />
+      <h1 id="login-msg">Login Here</h1>
       <ul className="login-errors errors">
         {errors.map((error, i) => (
           <li key={i}>{error}</li>
         ))}
       </ul>
-      <div className="login-inputs">
-        <input
-          className="login-input"
-          type="text"
-          placeholder="Username or Email"
-          value={credential}
-          onChange={e => setCredential(e.target.value)}
-          required
-        />
-        <input
-          className="login-input"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-        />
-        <button className="login-button" type="submit">Log In</button>
-        <DemoUser />
-      </div>
+      <input
+        className="login-input"
+        type="text"
+        placeholder="Username or Email"
+        value={credential}
+        onChange={e => setCredential(e.target.value)}
+        required
+      />
+      <input
+        className="login-input"
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+        required
+      />
+      <button className="login-button" type="submit">Log In</button>
+      <DemoUser id="demoUser" />
     </form>
 
   );
