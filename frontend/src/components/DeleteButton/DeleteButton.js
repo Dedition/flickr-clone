@@ -1,12 +1,12 @@
 //* React
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
 //* Store
 import { deleteImageAction } from "../../store/images";
 
-//* Files
+//* Files & Components
+import "./DeleteConfirm/DeleteConfirm.css";
 
 // TODO Create a delete button that redirects you to the DeleteConfirm page/component
 
@@ -15,7 +15,6 @@ const DeleteButton = ({ isOpen }) => {
     const dispatch = useDispatch();
 
     const { id } = useParams();
-    const sessionUser = useSelector(state => state.session.user);
 
     const deleteImage = async () => {
         await dispatch(deleteImageAction(id))
@@ -27,14 +26,14 @@ const DeleteButton = ({ isOpen }) => {
 
     return (
         <div className="delete-button-container">
-            This action is final. Are you sure you want to delete this image?
+            <h2>This action is <em>final.</em> Are you sure you want to delete this image?</h2>
             <div>
-                <button type="submit" onClick={deleteImage}>
+                <button id="submit" type="submit" onClick={deleteImage}>
                     Yes
                 </button>
             </div>
             <div>
-                <button onClick={() => isOpen(false)}>
+                <button id="cancel" onClick={() => isOpen(false)}>
                     No
                 </button>
             </div>

@@ -1,0 +1,104 @@
+.edit-comment-form {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    width: 350px;
+    color: whitesmoke;
+}
+
+#edit-comment-icon {
+    margin: 0 auto;
+}
+
+.edit-comment-form h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+
+}
+
+.edit-comment-form textarea {
+    background: #fafafa;
+    border: 1px solid #3f3f3f;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 14px;
+    height: 100px;
+    margin-bottom: 20px;
+    padding: 10px;
+    resize: none;
+    width: 100%;
+}
+
+#update-comment-button {
+    background: #000000;
+    border: 1px solid #3f3f3f;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: whitesmoke;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+}
+
+#update-comment-button:hover {
+    background: #3f3f3f;
+    color: whitesmoke;
+}
+
+/** Delete & Edit button  */
+.delete-edit-comp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#delete-comment-button {
+    background: #851414;
+    border: 1px solid #3f3f3f;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: whitesmoke;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+}
+
+#delete-comment-button:hover {
+    background: #3f3f3f;
+    color: whitesmoke;
+}
+
+#edit-comment-button {
+    background: #019948;
+    border: 1px solid #3f3f3f;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: whitesmoke;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+}
+
+#edit-comment-button:hover {
+    background: #3f3f3f;
+    color: whitesmoke;
+}

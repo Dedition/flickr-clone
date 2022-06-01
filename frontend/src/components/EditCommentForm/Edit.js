@@ -7,7 +7,7 @@ const EditCommentFormModal = ({ id, comment }) => {
 
     return (
         <>
-            <button onClick={() => setIsOpen(true)} id='edit-comment'>Edit
+            <button onClick={() => setIsOpen(true)} id='edit-comment-button'>Edit
                 <i className="fas fa-edit"></i>
             </button>
             {isOpen && (

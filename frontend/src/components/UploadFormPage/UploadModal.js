@@ -7,7 +7,7 @@ const UploadFormModal = () => {
 
     return (
         <>
-            <button onClick={() => setIsOpen(true)} id='nav-upload'>Upload
+            <button onClick={() => setIsOpen(true)} id='nav-upload-button'>Upload
                 <i className="fas fa-upload"></i>
             </button>
             {isOpen && (

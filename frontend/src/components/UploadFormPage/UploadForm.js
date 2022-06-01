@@ -1,9 +1,12 @@
+//* React
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+//* Store
 import { uploadImage } from "../../store/images";
 
+//* Files & Components
 import "./UploadForm.css";
 
 const UploadForm = ({ isOpen }) => {
@@ -16,7 +19,6 @@ const UploadForm = ({ isOpen }) => {
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
     const [content, setContent] = useState("");
-    // eslint-disable-next-line
     const [errors, setErrors] = useState([]);
 
     const handleImageChange = (e) => setImage(e.target.files[0]);
