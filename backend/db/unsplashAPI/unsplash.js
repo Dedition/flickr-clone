@@ -1,10 +1,10 @@
-
+require('dotenv').config();
 const apiKey = process.env.UNSPLASH_API_KEY;
 const secret = process.env.UNSPLASH_SECRET;
 const baseUrl = 'https://api.unsplash.com/';
 const accessToken = '&client_id=' + apiKey;
 const secretToken = '&client_secret=' + secret;
-const randomUrl = baseUrl + 'photos/?per_page=100' + accessToken;
+const randomUrl = baseUrl + 'photos/?per_page=200' + accessToken;
 https://api.unsplash.com/search/photos?page=10&query=concert&client_id=I8IfHiK0vVi3EeEQyra7YkAZ4ICKd8yAHl-W7n5va1s
 
 
