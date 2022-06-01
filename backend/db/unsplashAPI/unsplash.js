@@ -1,6 +1,6 @@
 
-const apiKey = process.env.REACT_APP_UNSPLASH_API_KEY;
-const secret = process.env.REACT_APP_UNSPLASH_SECRET;
+const apiKey = process.env.UNSPLASH_API_KEY;
+const secret = process.env.UNSPLASH_SECRET;
 const baseUrl = 'https://api.unsplash.com/';
 const accessToken = '&client_id=' + apiKey;
 const secretToken = '&client_secret=' + secret;
