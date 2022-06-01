@@ -120,12 +120,12 @@ router.post('/:id(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (req, r
 // TODO                          REMOVE IMAGE FROM ALBUM OF CURRENT USER
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-router.delete('/:id(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (req, res) => {
-  const albumUserId = await parseInt(req.params.id, 10);
+router.delete('/:userId(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (req, res) => {
+  const userId = await parseInt(req.params.id, 10);
   const imageId = await parseInt(req.params.imageId, 10);
 
   const album = await Album.findOne({
-    where: { albumUserId, imageId }
+    where: { userId, imageId }
   });
 
   if (!album) return res.status(404).json({ message: 'Failed: Image not found in album.' });

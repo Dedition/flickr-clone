@@ -40,12 +40,8 @@ const ImageDetails = () => {
 
     useEffect(() => {
         dispatch(getImages());
-    }, [dispatch]);
-
-    useEffect(() => {
         dispatch(getAlbum(sessionUser.id));
     }, [dispatch]);
-
 
     const handleCheckbox = (e) => {
         const { checked } = e.target;
