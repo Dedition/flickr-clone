@@ -55,7 +55,7 @@ const EditCommentForm = ({ isOpen, comment }) => {
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
             />
-            <button type="submit" disabled={!!errors.length} id="edit-comment-button">Update</button>
+            <button type="submit" disabled={!!errors.length} id="update-comment-button">Update</button>
         </form>
     );
 }
