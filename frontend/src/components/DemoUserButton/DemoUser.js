@@ -1,6 +1,10 @@
+//* React
 import { useDispatch } from 'react-redux';
+
+//* Store
 import * as sessionActions from '../../store/session';
 
+//* Files & Components
 import "./DemoUser.css";
 
 const DemoUser = () => {
@@ -17,9 +21,9 @@ const DemoUser = () => {
     };
 
     return (
-        <div className="DemoUser">
-            <button className="DemoUser_button" onClick={handleClick}>
-                <span className="DemoUser_button-text">Demo User</span>
+        <div className="demoUser">
+            <button id="demoUser-button" onClick={handleClick}>
+                <span id="demoUser-text">Demo User</span>
             </button>
         </div>
     );
