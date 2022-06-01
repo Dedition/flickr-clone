@@ -1,14 +1,17 @@
+//*  React
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// eslint-disable-next-line
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
+//* Store
 import { editImage } from "../../store/images";
+
+//* Files & Components
+import "./EditImageForm.css";
 
 const EditImageForm = ({ isOpen }) => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    // const history = useHistory();
 
     const sessionUser = useSelector((state) => state.session.user);
 
@@ -52,43 +55,36 @@ const EditImageForm = ({ isOpen }) => {
 
     return (
         <form className="edit-image-form" onSubmit={handleSubmit}>
-            <i className="fas fa-edit"> Image </i>
-            <div className="edit-logo" />
-            <div className="form-group">
-                <ul className="login-errors">
-                    {errors.map((error, i) => (
-                        <li key={i}>{error}</li>
-                    ))}
-                </ul>
-                <label htmlFor="name">Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-            </div>
-            <div className="form-group">
-                <label htmlFor="location">Location</label>
-                <input
-                    type="text"
-                    name="location"
-                    id="location"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                />
-            </div>
-            <div className="form-group">
-                <label htmlFor="content">Content</label>
-                <textarea
-                    name="content"
-                    id="content"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                />
-            </div>
-            <button type="submit" disabled={!!errors.length}>
+            <i className="fas fa-edit"></i>
+            <ul className="login-errors">
+                {errors.map((error, i) => (
+                    <li key={i}>{error}</li>
+                ))}
+            </ul>
+            <label htmlFor="name">Name</label>
+            <input
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
+            <label htmlFor="location">Location</label>
+            <input
+                type="text"
+                name="location"
+                id="location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+            />
+            <label htmlFor="content">Content</label>
+            <textarea
+                name="content"
+                id="content"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+            />
+            <button type="submit" disabled={!!errors.length} id="edit-image-button">
                 Submit
             </button>
         </form>

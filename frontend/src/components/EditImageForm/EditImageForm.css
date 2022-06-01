@@ -1,0 +1,39 @@
+.edit-image-form {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    width: 350px;
+}
+
+.edit-image-form form {
+    position: relative;
+}
+
+.edit-image-form textarea {
+    background: #fafafa;
+    border: 1px solid #eaeaea;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 14px;
+    height: 100px;
+    margin-bottom: 20px;
+    padding: 10px;
+    resize: none;
+    width: 100%;
+}
+
+#edit-image-button {
+    background: #000000;
+    border: 1px solid #eaeaea;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: rgb(62, 229, 255);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+}
