@@ -15,11 +15,11 @@ const SearchQuery = () => {
     let images = useSelector(state => state.images);
     images = Object.values(images);
 
-    images.sort((a, b) => {
-        if (a.createdAt < b.createdAt) return 1;
-        if (a.createdAt > b.createdAt) return -1;
-        return 0;
-    });
+    // images.sort((a, b) => {
+    //     if (a.createdAt < b.createdAt) return 1;
+    //     if (a.createdAt > b.createdAt) return -1;
+    //     return 0;
+    // });
 
     const queriedImages = images.filter(image => image?.name?.toLowerCase().includes(searchQuery.toLowerCase()));
     console.log(queriedImages);

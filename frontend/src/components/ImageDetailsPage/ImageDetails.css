@@ -55,6 +55,18 @@
     transform: scale(1.1);
 }
 
+.forward-arrow {
+    position: fixed;
+    top: 50%;
+    right: 5%;
+}
+
+.back-arrow-image {
+    position: fixed;
+    top: 50%;
+    left: 5%;
+}
+
 .image-details-info {
     padding-bottom: 30px;
 }

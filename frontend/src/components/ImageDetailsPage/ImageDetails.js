@@ -22,11 +22,11 @@ const ImageDetails = () => {
     let images = useSelector(state => state.images);
     images = Object.values(images);
 
-    images.sort((a, b) => {
-        const imageA = new Date(a?.createdAt);
-        const imageB = new Date(b?.createdAt);
-        return imageB > imageA ? -1 : 1;
-    });
+    // images.sort((a, b) => {
+    //     const imageA = new Date(a?.createdAt);
+    //     const imageB = new Date(b?.createdAt);
+    //     return imageB > imageA ? -1 : 1;
+    // });
 
     const image = images.find(image => image.id === +id);
     const index = images.indexOf(image);
@@ -83,13 +83,13 @@ const ImageDetails = () => {
                 {sessionUser && deleteEditLink}
                 <div className="image-body">
                     <Link to={index > 0 ? `/images/${images[index - 1].id}` : null}
-                        className={index > 0 ? "forward-back-arrows" : "hidden"}>
+                        className={index > 0 ? "forward-back-arrows back-arrow-image" : "hidden"}>
                         <i className="fas fa-chevron-left"></i>
                     </Link>
                     {/* eslint-disable-next-line */}
                     <img src={image?.imageUrl} id="image-details-img" />
                     <Link to={index < images.length - 1 ? `/images/${images[index + 1].id}` : null}
-                        className={index < images.length - 1 ? "forward-back-arrows" : "hidden"}>
+                        className={index < images.length - 1 ? "forward-back-arrows forward-arrow" : "hidden"}>
                         <i className="fas fa-chevron-right"></i>
                     </Link>
                 </div>
