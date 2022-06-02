@@ -6,7 +6,7 @@
   <br>clone: Flickr</br>
 </h5>
 
-Flickr is a website for users to upload and browse images about anything they want. It is <em>heavily</em>inspired by [Flickr](https://www.flickr.com/).
+Flickr is a website for users to upload and browse images about anything they want. It is <em>heavily</em> inspired by [Flickr](https://www.flickr.com/).
 
 # FlickrClone
 
@@ -14,7 +14,7 @@ Try at the live site: [FlickrClone](https://flickrpixelclone.herokuapp.com/)
 
 ## Technologies/languages/APIs used in this project
 
-JavaScript, Express, Postgres, Sequelize, HTML5, CSS, React, Redux, Unsplash API, AWS, Multer
+JavaScript, Express, Postgres, Sequelize, HTML5, CSS, React, Redux, Unsplash API, Flickr API, AWS, Multer
 
 ## Libraries used
 
