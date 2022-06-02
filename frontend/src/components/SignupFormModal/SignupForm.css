@@ -49,4 +49,5 @@
     background-color: rgb(178, 181, 7);
     color: white;
     box-sizing: border-box;
+    cursor: pointer;
 }
