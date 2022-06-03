@@ -53,12 +53,13 @@ router.post(
 
 router.get('/:id(\\d+)/images', asyncHandler(async (req, res) => {
   const userId = await parseInt(req.params.id, 10);
-
-  const images = await Image.findAll({
+  // console.log('userId \n \n \n', userId);
+  const images = await Album.findAll({
     where: { userId },
+    include: Image
   });
-
-  return res.json({ images });
+  console.log(images);
+  return res.json(images);
 }));
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
@@ -122,7 +123,6 @@ router.post('/:userId(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (re
 
 router.delete('/:userId(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.userId, 10);
-  console.log('userId \n \n \n', userId);
   const imageId = parseInt(req.params.imageId, 10);
 
   const album = await Album.findOne({

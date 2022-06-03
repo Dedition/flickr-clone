@@ -53,6 +53,7 @@ export const getAlbum = (userId) => async (dispatch) => {
     const response = await csrfFetch(`/api/users/${userId}/images`);
     if (response.ok) {
         const addedImages = await response.json();
+        console.log(addedImages);
         dispatch(load(addedImages));
         return addedImages;
     } else {
@@ -122,8 +123,8 @@ const albumReducer = (state = initialState, action) => {
         case LOAD: {
             const allLikedImages = {};
             // console.log(action)
-            action.likedImages.images.forEach(image => {
-                allLikedImages[image.id] = image;
+            action.likedImages.forEach(image => {
+                allLikedImages[image.Image.id] = image.Image;
             });
             return {
                 ...state,
