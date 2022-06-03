@@ -33,6 +33,11 @@
     margin-bottom: 10px;
     break-inside: avoid;
     position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.explore-image:hover {
+    transform: scale(1.05);
 }
 
 .explore-image>img {
