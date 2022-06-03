@@ -14,7 +14,7 @@ const DELETE = "ALBUMS/DELETE";
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 const add = (image) => ({ type: ADD, image });
-const load = (likedImage) => ({ type: LOAD, likedImage });
+const load = (likedImages) => ({ type: LOAD, likedImages });
 const update = (images) => ({ type: UPDATE, images });
 const deleteAlbum = (imageId) => ({ type: DELETE, imageId });
 
@@ -38,7 +38,7 @@ export const addAlbum = (userId, imageId) => async (dispatch) => {
         const newAlbum = await response.json();
         // console.log(newAlbum.image);
         dispatch(add(newAlbum.image));
-        // return newAlbum;
+        return newAlbum;
     } else {
         const error = await response.json();
         throw error;
@@ -122,7 +122,7 @@ const albumReducer = (state = initialState, action) => {
         case LOAD: {
             const allLikedImages = {};
             // console.log(action)
-            action.likedImage.images.forEach(image => {
+            action.likedImages.images.forEach(image => {
                 allLikedImages[image.id] = image;
             });
             return {
