@@ -57,7 +57,6 @@ module.exports = (sequelize, DataTypes) => {
 
     User.hasMany(models.Album, {
       foreignKey: 'userId',
-      as: 'albums',
       onDelete: 'CASCADE',
       hooks: true
     });

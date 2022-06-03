@@ -15,6 +15,12 @@
     left: 5%;
 }
 
+.fa-heart {
+    position: absolute;
+    top: 30px;
+    right: 5%;
+}
+
 .image-body {
     display: flex;
     width: 90%;

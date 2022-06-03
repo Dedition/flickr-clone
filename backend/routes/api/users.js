@@ -105,11 +105,11 @@ router.get('/:id(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (req, re
 // TODO                          ADD IMAGE TO ALBUM OF CURRENT USER
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-router.post('/:id(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (req, res) => {
-  const albumUserId = await parseInt(req.params.id, 10);
-  const imageId = await parseInt(req.params.imageId, 10);
+router.post('/:userId(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+  const imageId = parseInt(req.params.imageId, 10);
 
-  await Album.create({ albumUserId, imageId });
+  await Album.create({ userId, imageId });
 
   const image = await Image.findByPk(imageId);
 
@@ -121,16 +121,16 @@ router.post('/:id(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (req, r
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 router.delete('/:userId(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (req, res) => {
-  const userId = await parseInt(req.params.id, 10);
-  const imageId = await parseInt(req.params.imageId, 10);
+  const userId = parseInt(req.params.userId, 10);
+  console.log('userId \n \n \n', userId);
+  const imageId = parseInt(req.params.imageId, 10);
 
   const album = await Album.findOne({
     where: { userId, imageId }
   });
 
-  if (!album) return res.status(404).json({ message: 'Failed: Image not found in album.' });
-
-  await album.destroy();
+  if (!album) return res.status(404).json({ message: 'Failed: Image not found in album.' })
+  else if (album) await album.destroy();
 
   return res.json({ message: 'Image removed from album.' });
 

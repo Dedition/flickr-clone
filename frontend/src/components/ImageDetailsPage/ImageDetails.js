@@ -48,6 +48,7 @@ const ImageDetails = () => {
         const { checked } = e.target;
         const imageId = image.id;
         const userId = sessionUser.id;
+        // console.log(userId)
         if (checked) {
             dispatch(addAlbum(userId, imageId));
         } else {
@@ -73,13 +74,13 @@ const ImageDetails = () => {
         <div className="image-details-container">
             <div className="image-details-card">
                 <Link to="/" className="back-arrow"><i className="fas fa-arrow-left" style={{ fontSize: "13px" }}>Back to Explore</i></Link>
-                {/* <input
-                    className="heart-icon"
+                <input
+                    className="fa-solid fa-heart fa-beat"
                     type="checkbox"
                     id="heart"
                     checked={existsInAlbum}
                     onChange={handleCheckbox}
-                /> */}
+                />
                 {sessionUser && deleteEditLink}
                 <div className="image-body">
                     <Link to={index > 0 ? `/images/${images[index - 1].id}` : null}

@@ -36,8 +36,9 @@ export const addAlbum = (userId, imageId) => async (dispatch) => {
 
     if (response.ok) {
         const newAlbum = await response.json();
+        // console.log(newAlbum.image);
         dispatch(add(newAlbum.image));
-        return newAlbum;
+        // return newAlbum;
     } else {
         const error = await response.json();
         throw error;
@@ -88,6 +89,8 @@ export const updateAlbum = (userId, imageId, data) => async (dispatch) => {
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const removeAlbum = (userId, imageId) => async (dispatch) => {
+    console.log('entered Remove Album')
+    // /:userId/images/:imageId/album
     const response = await csrfFetch(`/api/users/${userId}/images/${imageId}/album`, {
         method: 'DELETE'
     });

@@ -20,8 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       hooks: true
     });
 
-    Image.belongsTo(models.Album, {
-      foreignKey: 'albumId',
+    Image.hasMany(models.Album, {
+      foreignKey: 'imageId',
+      onDelete: 'CASCADE',
+      hooks: true
     });
   };
   return Image;
