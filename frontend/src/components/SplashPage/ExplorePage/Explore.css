@@ -70,3 +70,10 @@
         column-count: 2;
     }
 }
+
+/* Image-container on small screens */
+@media only screen and (max-width: 539px) {
+    .image-container {
+        column-count: 1;
+    }
+}
