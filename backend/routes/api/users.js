@@ -58,7 +58,6 @@ router.get('/:id(\\d+)/images', asyncHandler(async (req, res) => {
     where: { userId },
     include: Image
   });
-  console.log(images);
   return res.json(images);
 }));
 
@@ -126,13 +125,14 @@ router.delete('/:userId(\\d+)/images/:imageId(\\d+)/album', asyncHandler(async (
   const imageId = parseInt(req.params.imageId, 10);
 
   const album = await Album.findOne({
-    where: { userId, imageId }
+    where: { userId, imageId },
+
   });
 
   if (!album) return res.status(404).json({ message: 'Failed: Image not found in album.' })
   else if (album) await album.destroy();
 
-  return res.json({ message: 'Image removed from album.' });
+  return res.json({ message: 'Image removed from album' });
 
 }));
 

@@ -97,9 +97,7 @@ export const removeAlbum = (userId, imageId) => async (dispatch) => {
     });
 
     if (response.ok) {
-        const deletedAlbum = await response.json();
-        dispatch(deleteAlbum(deletedAlbum.id));
-        return deletedAlbum;
+        dispatch(deleteAlbum(imageId));
     } else {
         const error = await response.json();
         throw error;
