@@ -14,7 +14,7 @@ Try at the live site: [FlickrClone](https://flickrpixelclone.herokuapp.com/)
 
 ## Technologies/languages/APIs used in this project
 
-JavaScript, Express, Postgres, Sequelize, HTML5, CSS, React, Redux, Unsplash API, Flickr API, AWS, Multer
+JavaScript, Express, Postgres, Sequelize, HTML5, CSS, React, Redux, Unsplash API, Flickr API, AWS, Multer, Mockaroo API
 
 ## Libraries used
 
