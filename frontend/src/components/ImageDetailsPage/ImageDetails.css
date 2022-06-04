@@ -109,6 +109,8 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    margin-right: -120px;
+    margin-top: -22.5px;
 }
 
 #delete-image {
@@ -120,4 +122,6 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    margin-right: -120px;
+    margin-top: -22.5px;
 }

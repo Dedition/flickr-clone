@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { FaPhoenixFramework } from 'react-icons/fa';
 
-//* Store
+//* Redux
 import * as sessionActions from '../../store/session';
 
 //* Files & Components

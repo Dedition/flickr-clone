@@ -2,7 +2,7 @@
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
-//* Store
+//* Redux
 import { deleteImageAction } from "../../store/images";
 
 //* Files & Components

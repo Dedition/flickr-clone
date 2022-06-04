@@ -1,7 +1,7 @@
 //* React
 import { useDispatch } from 'react-redux';
 
-//* Store
+//* Redux
 import * as sessionActions from '../../store/session';
 
 //* Files & Components

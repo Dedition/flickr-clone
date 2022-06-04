@@ -25,6 +25,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/"><Splash isLoaded={isLoaded} /></Route>
+          <Route path="/profile"></Route>
           <Route path="/images/:id"><ImageDetails /></Route>
           <Route path="/signup"><SignupFormModal /></Route>
           <Route path="login"><LoginFormModal /></Route>

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-//* Store
+//* Redux
 import { editImage } from "../../store/images";
 
 //* Files & Components
