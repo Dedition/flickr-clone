@@ -37,6 +37,11 @@
     text-align: center;
 }
 
+.login-errors {
+    color: red;
+    font-size: 1.2em;
+}
+
 .login-form input[type="text"] {
     width: 100%;
     padding: 5px;

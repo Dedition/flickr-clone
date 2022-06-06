@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from "react";
+//* React
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
+//* Redux
+import * as sessionActions from "./store/session";
+
+//* Files & Components
 import SignupFormModal from "./components/SignupFormModal";
 import LoginFormModal from "./components/LoginFormModal";
 import Splash from "./components/SplashPage/Splash";
-
-import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ImageDetails from "./components/ImageDetailsPage/ImageDetails";
 import SearchQuery from "./components/SearchQuery/SearchQuery";
+import LikedImages from "./components/MyLikedImages/LikedImages";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +29,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/"><Splash isLoaded={isLoaded} /></Route>
-          <Route path="/profile"></Route>
+          <Route path="/profile/:userId"><LikedImages /></Route>
           <Route path="/images/:id"><ImageDetails /></Route>
           <Route path="/signup"><SignupFormModal /></Route>
           <Route path="login"><LoginFormModal /></Route>

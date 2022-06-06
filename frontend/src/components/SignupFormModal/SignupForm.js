@@ -36,7 +36,7 @@ function SignupFormPage() {
   return (
     <form onSubmit={handleSubmit} className='signup-form'>
       <i className="fas fa-user-plus" id="sign-icon"></i>
-      <ul>
+      <ul className="signup-errors">
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>

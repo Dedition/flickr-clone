@@ -60,7 +60,6 @@ function LoginForm() {
       <button className="login-button" type="submit">Log In</button>
       <DemoUser id="demoUser" />
     </form>
-
   );
 }
 

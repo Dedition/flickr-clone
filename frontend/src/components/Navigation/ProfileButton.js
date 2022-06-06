@@ -32,6 +32,12 @@ function ProfileButton({ user }) {
     history.push('/');
   };
 
+  const myProfile = (e) => {
+    e.preventDefault();
+    history.push(`/profile/${user.id}`);
+    setShowMenu(false);
+  };
+
   return (
     <>
       <button onClick={openMenu} id="navigation-logout">
@@ -42,6 +48,7 @@ function ProfileButton({ user }) {
           <div id="dropdown-username">
             <span>{user.username}</span>
           </div>
+          <button onClick={myProfile}>My Profile</button>
           <button onClick={logout} id="logout-button">Logout</button>
         </div>
       )}
