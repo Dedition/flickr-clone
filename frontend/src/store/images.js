@@ -33,9 +33,9 @@ export const uploadImage = (data) => async (dispatch) => {
     formData.append('userId', userId);
     formData.append('location', location);
 
+    formData.append('image', image);
     // if (!image) dispatch(create(null))
     // else
-    formData.append('image', image);
 
     const response = await csrfFetch('/api/images', {
         method: 'POST',

@@ -111,10 +111,7 @@ const initialState = {};
 const albumReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD: {
-            return {
-                ...state,
-                [action.image.id]: action.image
-            }
+            return { ...state, [action.image.id]: action.image }
         }
         case LOAD: {
             const allLikedImages = {};
